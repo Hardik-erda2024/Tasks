@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        body{
+            background-color:chocolate;
+        }
+        table {
+            width: 500px;
+            height: 500px;
+            
+        }
+    </style>
+    <h3 id="lb_score">Score: 0</h3>
+    <h3 id="lb_timer"></h3>
+    <table id="Dtable">
+        <tr class="Drow">
+            <td class="Dcol"></td>
+            <td class="Dcol"></td>
+        </tr>
+        <tr class="Drow">
+            <td class="Dcol"></td>
+            <td class="Dcol"></td>
+        </tr>
+
+    </table>
+    <div id="Mydiv"></div>
+    <script>
+        var Rnum, width = 150,gbColor,score=0;
+        function colorAllCol()
+        {
+            gbColor = getRandomColor();
+            console.log(gbColor);
+            var temp = document.querySelectorAll(".Dcol");
+            temp.forEach(function (element) {
+                element.setAttribute("style", "background-color: " + gbColor);
+                element.setAttribute("onclick","alert('Wrong Box')");
+            })
+        }
+        function randColorFun() {
+            colorAllCol()
+            var maxLimit = document.getElementsByClassName("Dcol").length;
+            Rnum = Math.floor(Math.random() * maxLimit);
+            console.log(Rnum, maxLimit);
+            document.getElementsByClassName("Dcol")[Rnum].setAttribute("style", "background-color: "+gbColor+"D9");
+            document.getElementsByClassName("Dcol")[Rnum].removeAttribute("onclick");
+            document.getElementsByClassName("Dcol")[Rnum].setAttribute("onclick", "reSizeTableFun()");
+        }
+        randColorFun();
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        function reSizeTableFun() {
+            document.getElementsByClassName("Dcol")[Rnum].removeAttribute("style");
+            document.getElementsByClassName("Dcol")[Rnum].removeAttribute("onclick");
+            score+=1;
+            document.getElementById("lb_score").innerHTML="Score: "+score;
+            var Rlen = document.getElementsByClassName("Drow").length;
+            console.log(Rlen)
+            var Dlen = document.getElementsByClassName("Dcol").length;
+            console.log(Dlen)
+            const trow = document.createElement("tr");
+            trow.setAttribute("class", "Drow");
+            for (i = 0; i < (Dlen / Rlen); i++) {
+                const tcol = document.createElement("td");
+                tcol.setAttribute("class", "Dcol")
+                trow.appendChild(tcol)
+            }
+            document.getElementById("Dtable").appendChild(trow);
+            Rlen = document.getElementsByClassName("Drow").length;
+            for (i = 0; i < Rlen; i++) {
+                const tcol = document.createElement("td");
+                tcol.setAttribute("class", "Dcol")
+                document.getElementsByClassName("Drow")[i].appendChild(tcol);
+            }
+            colorAllCol()
+            randColorFun()
+        }
+        var timeVar=setInterval(TimerFun,1000)
+        var count=100
+        function TimerFun()
+        {
+            document.getElementById("lb_timer").innerHTML="Timer: "+count;
+            count--;
+            if(count == -1)
+            {
+                document.getElementById("Dtable").remove()
+                var newH2=document.createElement("h2");
+                newH2.innerHTML="Reload Page to play agin";
+                document.getElementById("Mydiv").appendChild(newH2);
+                clearInterval(timeVar)
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+       
+        td{
+            background-color: gray;
+            width: 100px;
+            height: 25px;
+        }
+    </style>
+    <h1>Hardik Erda 24DEV020</h1>
+    <button onclick="addColFun()">+ Col</button>
+    <button onclick="removeColFun()">- Col</button>
+    <table id="Dtable" style="border: 1px solid;">
+        <tr class="Drow"><td class="Dcol"></td><td class="Dcol"></td></tr>
+        <tr class="Drow"><td class="Dcol"></td><td class="Dcol"></td></tr>
+    </table>
+    <button onclick="addRowFun()">+ Row</button>
+    <button onclick="removeRowFun()">- Row</button>
+
+    <script>
+        
+        function addRowFun()
+        {
+            var Rlen = document.getElementsByClassName("Drow").length;
+            console.log(Rlen)
+            var Dlen = document.getElementsByClassName("Dcol").length;
+            console.log(Dlen)
+            const trow = document.createElement("tr");
+            trow.setAttribute("class","Drow");
+            for(i=0;i<(Dlen/Rlen);i++)
+            {
+                const tcol = document.createElement("td");
+                tcol.setAttribute("class","Dcol")
+                trow.appendChild(tcol)
+            }
+            document.getElementById("Dtable").appendChild(trow);
+            colorfun(); 
+
+        }
+        function removeRowFun()
+        {
+            if(document.getElementsByClassName("Drow").length > 2)
+            {
+                document.getElementById("Dtable").lastChild.remove();
+            }
+            colorfun();
+        }
+        function addColFun()
+        {
+            var Rlen = document.getElementsByClassName("Drow").length;
+            for(i=0;i<Rlen;i++)
+            {
+                const tcol = document.createElement("td");
+                tcol.setAttribute("class","Dcol")
+                document.getElementsByClassName("Drow")[i].appendChild(tcol);
+            }
+            colorfun();
+        }
+        function removeColFun()
+        {
+            console.log();
+            if(document.getElementsByClassName("Drow")[0].children.length>2)
+            {
+                var Rlen = document.getElementsByClassName("Drow").length;
+                for(i=0;i<Rlen;i++)
+                {
+                    document.getElementsByClassName("Drow")[i].lastChild.remove();
+                }
+            }
+            colorfun();
+        }
+        function colorfun()
+        {
+            var num = document.getElementsByClassName("Drow").length;
+            for (i=0;i<num;i++)
+            {
+                if(i%2 == 0)
+                {
+                    var len = document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol").length;
+                    for(j=0;j<len;j++)
+                    {
+                        if(j%2==0)
+                        {
+                            document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol")[j].setAttribute("style","background-color: brown;");
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    var len = document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol").length;
+                    for(j=0;j<len;j++)
+                    {
+                        if(j%2!=0)
+                        {
+                            document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol")[j].setAttribute("style","background-color: brown;");
+                        }
+                    }
+                }
+            }
+        }
+        colorfun() 
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Password</h1>
+        <form class="myform" method="post">
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" id="Confirmpsw" onchange="checkPsw()">
+                <span id="msg"></span>
+            </div>
+            <input id="subBtn" type="submit" value="Submit">
+        </form>
+        
+    </div>
+    <script>
+    document.getElementById('subBtn').hidden = true;
+    function checkPsw()
+        {
+            if(document.getElementById('password').value == document.getElementById('Confirmpsw').value)
+            {
+                document.getElementById('subBtn').hidden = false;
+                document.getElementById('msg').innerHTML = '';
+            }
+            else
+            {
+                document.getElementById('subBtn').hidden = true;
+                document.getElementById('msg').innerHTML = "password not matched!";
+            }
+        }</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table{
+            width: 800; height:  700;
+        }
+        body{
+            background-color: rebeccapurple;
+        }
+        td{
+            width: 277px;
+            height: 231px;
+            background-color: aqua;
+        }
+        </style>
+        <h1>Score</h1>
+        <h3 id="h3_p1">Player1: 0</h3>
+        <h3 id="h3_p2">Player2: 0</h3>
+        <button id="btn_clear" onclick="ScoreClearFun()">Clear Score</button><br><br>
+    <table id="Dtable">
+        <tr class="Drow">
+            <td class="Dcol" id="col1" onclick="checkSignFun1()"><label id='lb1' hidden>3</label></td>
+            <td class="Dcol" id="col2" onclick="checkSignFun2()"><label id='lb2' hidden>3</label></td>
+            <td class="Dcol" id="col3" onclick="checkSignFun3()"><label id='lb3' hidden>3</label></td>
+        </tr>
+        <tr class="Drow">
+            <td class="Dcol" id="col4" onclick="checkSignFun4()"><label id='lb4' hidden>3</label></td>
+            <td class="Dcol" id="col5" onclick="checkSignFun5()"><label id='lb5' hidden>3</label></td>
+            <td class="Dcol" id="col6" onclick="checkSignFun6()"><label id='lb6' hidden>3</label></td>
+        </tr>
+        <tr class="Drow">
+            <td class="Dcol" id="col7" onclick="checkSignFun7()"><label id='lb7' hidden>3</label></td>
+            <td class="Dcol" id="col8" onclick="checkSignFun8()"><label id='lb8' hidden>3</label></td>
+            <td class="Dcol" id="col9" onclick="checkSignFun9()"><label id='lb9' hidden>3</label></td>
+        </tr>
+    </table>
+    <script>
+        var p1count=0,p2count=0;
+        var player = 1;
+        function checkSignFun1()
+        {
+            if(document.getElementById("col1").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col1").innerHTML += "<img id='img1' src='/ref/O.png'>";
+                document.getElementById("lb1").innerHTML = 0;
+                player = 2;
+                if((document.getElementById("lb2").innerHTML == 0 && document.getElementById("lb3").innerHTML == 0) || (document.getElementById("lb4").innerHTML == 0 && document.getElementById("lb7").innerHTML == 0) || (document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb9").innerHTML == 0)){
+                    alert("Player1 win");
+                    p1count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col1").innerHTML += "<img id='img2' src='/ref/X.png'>";
+                document.getElementById("lb1").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb2").innerText == 1 && document.getElementById("lb3").innerText == 1) || (document.getElementById("lb4").innerText == 1 && document.getElementById("lb7").innerText == 1) || (document.getElementById("lb5").innerText == 1 && document.getElementById("lb9").innerText == 1)){
+                    alert("Player2 win");
+                    p2count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun2()
+        {
+            if(document.getElementById("col2").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col2").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb2").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb1").innerHTML == 0 && document.getElementById("lb3").innerHTML == 0) || (document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb8").innerHTML == 0)){
+                    alert("Player1 win");
+                    p1count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col2").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb2").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb1").innerHTML == 1 && document.getElementById("lb3").innerHTML == 1) || (document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb8").innerHTML == 1))
+                {
+                    alert("Player2 win");
+                    p2count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun3()
+        {
+            if(document.getElementById("col3").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col3").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb3").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb1").innerHTML == 0 && document.getElementById("lb2").innerHTML == 0) || (document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb7").innerHTML == 0)|| (document.getElementById("lb6").innerHTML == 0 && document.getElementById("lb9").innerHTML == 0)){
+                    alert("Player1 win");
+                    p1count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col3").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb3").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb1").innerHTML == 1 && document.getElementById("lb2").innerHTML == 1) || (document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb7").innerHTML == 1)|| (document.getElementById("lb6").innerHTML == 1 && document.getElementById("lb9").innerHTML == 1)){
+                    alert("Player2 win");
+                    p2count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun4()
+        {
+            if(document.getElementById("col4").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col4").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb4").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb1").innerHTML == 0 && document.getElementById("lb7").innerHTML == 0) || (document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb6").innerHTML == 0)){
+                        alert("Player1 win");
+                        p1count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col4").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb4").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb1").innerHTML == 1 && document.getElementById("lb7").innerHTML == 1) || (document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb6").innerHTML == 1)){
+                    alert("Player2 win");
+                    p2count++;
+                    clearCol()
+                }
+                else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun5()
+        {
+            if(document.getElementById("col5").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col5").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb5").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb4").innerHTML == 0 && document.getElementById("lb6").innerHTML == 0) || (document.getElementById("lb8").innerHTML == 0 && document.getElementById("lb2").innerHTML == 0)|| (document.getElementById("lb7").innerHTML == 0 && document.getElementById("lb3").innerHTML == 0)|| (document.getElementById("lb1").innerHTML == 0 && document.getElementById("lb9").innerHTML == 0)){
+                        alert("Player1 win");
+                        p1count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col5").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb5").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb4").innerHTML == 1 && document.getElementById("lb6").innerHTML == 1) || (document.getElementById("lb8").innerHTML == 1 && document.getElementById("lb2").innerHTML == 1)|| (document.getElementById("lb7").innerHTML == 1 && document.getElementById("lb3").innerHTML == 1)|| (document.getElementById("lb1").innerHTML == 1 && document.getElementById("lb9").innerHTML == 1)){
+                        alert("Player2 win");
+                        p2count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun6()
+        {
+            if(document.getElementById("col6").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col6").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb6").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb4").innerHTML == 0) || (document.getElementById("lb9").innerHTML == 0 && document.getElementById("lb3").innerHTML == 0)){
+                        alert("Player1 win");
+                        p1count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col6").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb6").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb4").innerHTML == 1) || (document.getElementById("lb9").innerHTML == 1 && document.getElementById("lb3").innerHTML == 1)){
+                        alert("Player2 win");
+                        p2count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun7()
+        {
+            if(document.getElementById("col7").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col7").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb7").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb3").innerHTML == 0) || (document.getElementById("lb9").innerHTML == 0 && document.getElementById("lb8").innerHTML == 0)|| (document.getElementById("lb1").innerHTML == 0 && document.getElementById("lb4").innerHTML == 0)){
+                        alert("Player1 win");
+                        p1count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col7").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb7").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb3").innerHTML == 1) || (document.getElementById("lb9").innerHTML == 1 && document.getElementById("lb8").innerHTML == 1)|| (document.getElementById("lb1").innerHTML == 1 && document.getElementById("lb4").innerHTML == 1)){
+                        alert("Player2 win");
+                        p2count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun8()
+        {
+            if(document.getElementById("col8").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col8").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb8").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb2").innerHTML == 0) || (document.getElementById("lb9").innerHTML == 0 && document.getElementById("lb7").innerHTML == 0)){
+                        alert("Player1 win");
+                        p1count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+            else
+            {
+                document.getElementById("col8").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb8").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb2").innerHTML == 1) || (document.getElementById("lb9").innerHTML == 1 && document.getElementById("lb7").innerHTML == 1)){
+                        alert("Player2 win");
+                        p2count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function checkSignFun9()
+        {
+            if(document.getElementById("col9").childElementCount ==2)
+            {
+                return alert("Click somewhere else")
+            }
+            if(player == 1)
+            {
+                document.getElementById("col9").innerHTML += "<img src='/ref/O.png'>";
+                document.getElementById("lb9").innerText = 0;
+                player = 2;
+                if((document.getElementById("lb5").innerHTML == 0 && document.getElementById("lb1").innerHTML == 0) || (document.getElementById("lb6").innerHTML == 0 && document.getElementById("lb3").innerHTML == 0)|| (document.getElementById("lb8").innerHTML == 0 && document.getElementById("lb7").innerHTML == 0)){
+                        alert("Player1 win");
+                        p1count++;
+                        clearCol()
+                    }
+                else{
+                    checkDrawfun()
+                }                 
+            }
+            else
+            {
+                document.getElementById("col9").innerHTML += "<img src='/ref/X.png'>";
+                document.getElementById("lb9").innerText = 1;
+                player = 1;
+                if((document.getElementById("lb5").innerHTML == 1 && document.getElementById("lb1").innerHTML == 1) || (document.getElementById("lb6").innerHTML == 1 && document.getElementById("lb3").innerHTML == 1)|| (document.getElementById("lb8").innerHTML == 1 && document.getElementById("lb7").innerHTML == 1)){
+                        alert("Player2 win");
+                        p2count++;
+                        clearCol()
+                    }
+                    else{
+                    checkDrawfun()
+                }
+            }
+
+        }
+        function clearCol()
+        {
+            var img = document.querySelectorAll("img");
+            img.forEach(function (e){
+                e.remove();
+            })
+
+            var lb = document.querySelectorAll("label");
+            lb.forEach(function(e){
+                e.innerHTML=3;
+            })
+            player = 1;
+            document.getElementById("h3_p1").innerHTML="Player1: "+p1count;
+            document.getElementById("h3_p2").innerHTML="Player2: "+p2count;
+        }
+        function ScoreClearFun()
+        {
+            p1count = 0;
+            p2count = 0;
+            document.getElementById("h3_p1").innerHTML="Player1: "+p1count;
+            document.getElementById("h3_p2").innerHTML="Player2: "+p2count;
+            clearCol()
+        }
+
+        function checkDrawfun()
+        {
+            var count=0;
+            var data = document.querySelectorAll("label");
+            data.forEach(function (e){
+                if(e.innerHTML != "3")
+                {
+                    count++;
+                }
+            })
+            if(count == 9)
+            {
+                alert("Draw");
+                clearCol();
+            }
+        }
+    </script>
+</body>
+</html>

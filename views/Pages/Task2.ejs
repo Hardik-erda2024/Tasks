@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onafterprint="myfun()" onbeforeprint="myfunBefor()" onload="alert('onload event is called')" onresize="alert('resize event is called')" onscroll="alert('scroll event is called')">
+    <style>
+        
+        label {
+            color: gray;
+            
+        }
+        td  {
+            width: 150px;
+            height: 100px;
+            text-align: center ;
+            border: 1px solid;
+            
+        }
+    </style>
+    <table>
+        <tr>
+            <td><label>Press Ctrl + P </label></td>
+            <td><input type="text"  onblur="onBlurFun()" value="Call when out of foucs"></td>
+            <td><input type="button" onclick="onclickFun()" value="Click Me"></td>
+            <td><select onchange="onChangeFun()"><option>Red</option> <option value="Green">Green</option> <option>Blue</option></select></td>
+            <td oncontextmenu="onContextMenuFun()"><label >Right Click</label></td>
+            <td><input type="text" value="Copy me" oncopy="onCopyFun()"></td>
+            <td><input type="text" value="cut me" oncut="onCutFun()"></td>
+            <td><button ondblclick="ondblClickFun()">Double click Me</button></td>
+            <td><label ondrag="onDragFun()" id="lb_drag" draggable="true">Drag me</label></td>
+            <td><label ondragend="onDragEndFun()" draggable="true">Drag me</label></td>
+            <td><img src="" onerror="alert('onError event is called')"><label>Error</label></td>
+            <td><input onfocus="alert('onfocus event is called')" placeholder="Click Me"></td>
+        </tr>
+        <tr>
+            <td><button onclick="openFullScreenFun()">fullscreen mode</button></td>
+            <td><input onkeydown="alert('onKeyDown event is called')" placeholder="press any key"></td>
+            <td><input onkeyup="alert('onkeyup event is callled')" placeholder="press any key"></td>
+            <td ><label>onLoad event</label></td>
+            <td><label onmousedown="alert('mouseDown event is called')">click text</label></td>
+            <td><label onmouseup="alert('mouseup event is called')">Click text</label></td>
+            <td onmouseenter="alert('mouseEnter event is called')"><label>hover mouse</label></td>
+            <td onmouseleave="alert('mouseLeave event is called')"><label>Hover mouse</label></td>
+            <td onmousemove="alert('mouseMove event is called')"><label>Hover mouse</label></td>
+            <td onmouseover="alert('mouseover event is called')"><label>Hover Mouse</label></td>
+            <td><form onreset="alert('onreset method is called')"><input type="reset"></form></td>
+            <td><input type="text" value="select text" onselect="alert('onselect event is called')"></td>
+        </tr>
+        <tr>
+            <td><form action="#"  onsubmit="alert('onsubmit event is called')"><input type="submit"></form></td>
+            <td><details ontoggle="alert('toggle event is called')"><summary>toggle menu</summary><p>Hello world!</p></details> </td>
+            <td onwheel="alert('onwheel event is called')"><label>Roll the mouse wheel</label></td>
+        </tr>
+    </table>
+    <script>
+        
+        var elem = document.documentElement;
+        function openFullScreenFun()
+        {
+            if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+            }
+        }
+        function ondblClickFun()
+        {
+            alert("ondblclick event is called")
+        }
+        function myfun()
+        {
+            alert("after print event is called")
+        }
+        function myfunBefor()
+        {
+            alert("befor print event is called ")
+        }
+        function onBlurFun()
+        {
+            alert("onblur event is called")
+        }
+        function onclickFun()
+        {
+            alert("onclick event is called")
+        }
+        function onChangeFun()
+        {
+            alert("onChange event is called")
+        }
+        function onContextMenuFun()
+        {
+            alert("OnContextMenu event is called")
+        }
+        function onCopyFun()
+        {
+            alert("onCopy event is called")
+        }
+        function onCutFun()
+        {
+            alert("oncut event is called")
+        }
+        function onDragFun()
+        {
+            alert("ondrag event is called")
+        }
+        function onDragEndFun()
+        {
+            alert("onDragEnd event is called")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <h1 class="text-center">Job Application Form</h1>
+    <div class="bg-light py-5">
+    
+    <form method="post" id="myform" class="w-75 mx-auto d-flex justify-content-center">
+        <div id="BasicDetails">
+            <h3>Basic Details</h3>
+            <lable >First Name:</lable>
+            <input type="text" name="FirstName" class="required">
+            <lable>Last Name:</lable>
+            <input type="text" name="LastName" id="LastName" class="required"><br>
+            <br>
+            <lable>designation</lable>
+            <input type="text" name="bd_Designation" id="Designation" class="required">
+            <lable>Address1</lable>
+            <input type="text" name="Address1" id="Address1" class="required">
+            <br><br>
+            <lable>Email</lable>
+            <input type="text" name="Email" id="Email" class="required emailvalidate">
+            <lable>Address2</lable>
+            <input type="text" name="Address2" id="Address2" class="required">
+
+            <br><br>
+            <lable>Phone Number</lable>
+            <input type="phone" name="Phone" id="Phone" class="required phonevalidate">
+            <lable>City</lable>
+            <input type="city" name="City" id="City" class="required">
+            <br><br>
+            <label>State</label>
+            <select name="State" id="State" class="dropDownValidate" onchange="removeFun(this.id)">
+                <option value="select">--select--</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Maharastra">Maharastra</option>
+            </select>
+            <br><br>
+            <label>Gender</label>
+            <label><input type="radio" name="Gender" value="Male"> Male</label>
+            <label><input type="radio" name="Gender" value="Female"> Female</label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label>Zip Code</label>
+            <input type="text" name="ZipCode" class="required zipcodevalidate">
+            <br><br>
+            <label>RelationStatus</label>
+            <select name="RelationStatus" id="RelationStatus" class="dropDownValidate" onchange="removeFun(this.id)">
+                <option value="select">--select--</option>
+                <option value="Single">Single</option>
+                <option value="Unmarride">married</option>
+            </select>
+            <label>DOB</label>
+            <input type="text" name="DOB" class="required dateValidator" placeholder="YYYY-MM-DD">
+        </div>
+        <div id="EducationDiv" style="display: none;">
+            <h3>Education Details</h3>
+            <h4>SSC result</h4>
+            <br>
+            <input type="hidden" name="hiddenId">
+            <div class="paraRequired">
+
+                <label>Name of board</label>
+                <input type="text" name="bord" class="">
+                <label>Passing Year</label>
+                <input type="text" name="year" placeholder="2024" class=" isYear">
+                <label>Percentage</label>
+                <input type="text" name="percentage" class=" percentageValidator">
+            </div>
+            <br><br>
+            <hr>
+
+            <br>
+            <h4>HSC/Diploma Result</h4>
+            <input type="hidden" name="hiddenId">
+            <div class="paraRequired">
+                <label>Name of board</label>
+                <input type="text" name="bord" class="">
+                <label>Passing Year</label>
+                <input type="text" name="year" placeholder="2024" class=" isYear">
+                <label>Percentage</label>
+                <input type="text" name="percentage" class=" percentageValidator">
+            </div>
+            <br><br>
+            <hr>
+
+            <h4>Bachelor degree</h4>
+            <br>
+            <input type="hidden" name="hiddenId">
+            <div class="paraRequired">
+                <label>Course Name</label>
+                <input type="text" name="bord">
+                <label>Passing Year</label>
+                <input type="text" name="year" placeholder="2024" class="isYear">
+                <label>Percentage</label>
+                <input type="text" name="percentage" class="percentageValidator">
+            </div>
+            <br><br>
+            <hr>
+
+            <h4>Master degree</h4>
+            <br>
+            <input type="hidden" name="hiddenId">
+            <div class="paraRequired">
+                <label>Course Name</label>
+                <input type="text" name="bord">
+                <label>Passing Year</label>
+                <input type="text" name="year" placeholder="2024" class="isYear">
+                <label>Percentage</label>
+                <input type="text" name="percentage" class="percentageValidator">
+            </div>
+        </div>
+        <div id="WorkExprienceDiv" style="display: none;">
+            <h3>Work Experience</h3>
+            <input type="hidden" name="WorkhiddenId">
+            <div class="paraRequired">
+
+                <label>Company name</label>
+                <input type="text" name="Companyname">
+                <label>Designation</label>
+                <input type="text" name="Designation">
+                <label>From</label>
+                <input type="text" name="dateFrom" class="dateValidator" placeholder="YYYY-MM-DD">
+                <label>To</label>
+                <input type="text" name="dateTo" class="dateValidator" placeholder="YYYY-MM-DD">
+            </div>
+
+            <br><br>
+            <input type="hidden" name="WorkhiddenId">
+            <div class="paraRequired">
+
+                <label>Company name</label>
+                <input type="text" name="Companyname">
+                <label>Designation</label>
+                <input type="text" name="Designation">
+                <label>From</label>
+                <input type="text" name="dateFrom" class="dateValidator" placeholder="YYYY-MM-DD">
+                <label>To</label>
+                <input type="text" name="dateTo" class="dateValidator" placeholder="YYYY-MM-DD">
+            </div>
+
+            <br><br>
+            <input type="hidden" name="WorkhiddenId">
+            <div class="paraRequired">
+
+                <label>Company name</label>
+                <input type="text" name="Companyname">
+                <label>Designation</label>
+                <input type="text" name="Designation">
+                <label>From</label>
+                <input type="text" name="dateFrom" class="dateValidator" placeholder="YYYY-MM-DD">
+                <label>To</label>
+                <input type="text" name="dateTo" class="dateValidator" placeholder="YYYY-MM-DD">
+            </div>
+        </div>
+        <div id="LanguageDiv" style="display: none;">
+            <h3>Language you Know</h3>
+            <input type="hidden" name="LanguageId">
+            <label><input type="checkbox" name="Language[]" value="Hindi"> Hindi</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="Hindi_read" value="1"> Read</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="Hindi_write" value="1"> Write</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="Hindi_speak" value="1"> Speak</label>&nbsp;&nbsp;
+            <br><br>
+            <input type="hidden" name="LanguageId">
+            <label><input type="checkbox" name="Language[]" value="English"> English</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="English_read" value="1"> Read</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="English_write" value="1"> Write</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="English_speak" value="1"> Speak</label>&nbsp;&nbsp;
+            <br><br>
+            <input type="hidden" name="LanguageId">
+            <label><input type="checkbox" name="Language[]" value="Gujarati"> Gujarati</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="Gujarati_read" value="1"> Read</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="Gujarati_write" value="1"> Write</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="Gujarati_speak" value="1"> Speak</label>&nbsp;&nbsp;
+        </div>
+        <div id="TechnoloyDiv" style="display: none;">
+            <h3>Technoloy you know</h3>
+            <input type="hidden" name="TechnologieID">
+            <label><input type="checkbox" name="Technoloy[]" value="PHP"> PHP</label>
+            <label><input type="radio" name="PHP" value="1"> Beginer</label>
+            <label><input type="radio" name="PHP" value="2"> Mideator</label>
+            <label><input type="radio" name="PHP" value="3"> Expert</label>
+            <br><br>
+            <input type="hidden" name="TechnologieID">
+            <label><input type="checkbox" name="Technoloy[]" value="Mysql"> Mysql</label>
+            <label><input type="radio" name="Mysql" value="1"> Beginer</label>
+            <label><input type="radio" name="Mysql" value="2"> Mideator</label>
+            <label><input type="radio" name="Mysql" value="3"> Expert</label>
+            <br><br>
+            <input type="hidden" name="TechnologieID">
+            <label><input type="checkbox" name="Technoloy[]" value="Laravel"> Laravel</label>
+            <label><input type="radio" name="Laravel" value="1"> Beginer</label>
+            <label><input type="radio" name="Laravel" value="2"> Mideator</label>
+            <label><input type="radio" name="Laravel" value="3"> Expert</label>
+            <br><br>
+            <input type="hidden" name="TechnologieID">
+            <label><input type="checkbox" name="Technoloy[]" value="Oracle"> Oracle</label>
+            <label><input type="radio" name="Oracle" value="1"> Beginer</label>
+            <label><input type="radio" name="Oracle" value="2"> Mideator</label>
+            <label><input type="radio" name="Oracle" value="3"> Expert</label>
+        </div>
+        <div id="ReferanceDiv" style="display: none;">
+            <h3>Referance</h3>
+            <input type="hidden" name="ReferanceId">
+            <div class="paraRequired">
+
+                <label>Name</label>
+                <input type="text" name="refName">
+                <label>Contact Number</label>
+                <input type="text" name="refPhone" class="phonevalidate">
+                <label>Relation</label>
+                <input type="text" name="refRelation">
+            </div>
+            <br><br>
+            <input type="hidden" name="ReferanceId">
+            <div class="paraRequired">
+
+                <label>Name</label>
+                <input type="text" name="refName">
+                <label>Contact Number</label>
+                <input type="text" name="refPhone" class="phonevalidate">
+                <label>Relation</label>
+                <input type="text" name="refRelation">
+            </div>
+        </div>
+        <div id="PreferancesDiv" style="display: none;">
+            <h3>Preferances</h3>
+            <div class="paraRequired">
+
+                <label>Prefer location</label>
+                <select id="PreferLocation" name="PreferLocation" >
+                    <option value="">--select--</option>
+                    <option value="Ahemdabad">Ahemdabad</option>
+                    <option value="Mumbai">Mumbai</option>
+                </select>
+                <label>Notice period</label>
+                <input type="text" class="isDigit" name="PreferNotice">
+                <label>Department</label>
+                <select id="Department" name="Department" >
+                    <option value="">--select--</option>
+                    <option value="Devlopment">Devlopment</option>
+                    <option value="Design">Design</option>
+                    <option value="Marketing">Marketing</option>
+                </select>
+                <br>
+                <label>Expacted CTC</label>
+                <input type="text" class="isDigit" name="PerferExCTC">
+                <br>
+                <label>Current CTC</label>
+                <input type="text" class="isDigit" name="PerferCuCTC">
+            </div>
+        </div>
+    </form>
+</div>
+    <br><br>
+    <div class="d-flex justify-content-center">
+
+        <div class="btn-group" role="group" >
+            <button id="prvBtn" class="btn btn-outline-primary" onclick="prvdiv()" hidden>Previous</button>
+            <button id="nxtBtn" class="btn btn-outline-primary" onclick="nxtdiv()">Next</button>
+        </div>
+        <button id="subBtn" class="btn btn-outline-success mx-3" onclick="subFun()" hidden>Submit</button>
+    </div>
+    <script src="/JS/task12.js"></script>
+    <script src="/JS/formValidationScript.js"></script>
+</body>
+
+</html>

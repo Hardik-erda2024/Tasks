@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registration</h1>
+        <form class="myform" method="post">
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" name="firstname">
+            </div>
+            <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" name="lastname">
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="text" name="email">
+            </div>
+            <div class="input-group">
+                <label>Gender</label>
+                <label><input type="radio" value="Male" name="Gender" checked> Male</label>
+                <label><input type="radio" value="Female" name="Gender"> Female</label>
+            </div>
+            <input id="subBtn" type="submit" value="Register">
+            <span>Already have account? <a href="/login">Login</a></span>
+        </form>
+        
+    </div>
+    <script src="JS/main.js"></script>
+</body>
+</html>

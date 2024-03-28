@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 class="text-center">User table</h1>
+    <a href="/Task12" class="btn btn-primary">Add</a>
+    <table id="mytab" class="table  table-striped w-50 mx-auto">
+    </table>
+    <script>
+        async function fetchTab()
+        {
+            var response = await fetch(`http://localhost:8080/db-Candidatemaster`);
+            var data = await response.json();
+            var th = document.createElement('tr');
+                Object.keys(data[0]).forEach((el)=>{
+                    th.innerHTML +=`<th>${el}</th>`; 
+                });
+                document.getElementById('mytab').append(th);
+            Object.keys(data).forEach((i)=>{
+                var tr = document.createElement('tr');
+                Object.values(data[i]).forEach((e)=>{
+                    tr.innerHTML +=`<td>${e}</td>`;
+                });
+                tr.innerHTML +=`<td><a href="http://localhost:8080/Task12/update/${data[i].id}" class="btn btn-warning" >Update</a></td>`;
+                document.getElementById('mytab').append(tr);
+            });
+        }
+        fetchTab();
+    </script>
+</body>
+</html>
