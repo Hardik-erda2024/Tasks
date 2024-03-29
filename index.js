@@ -16,6 +16,44 @@ app.use('/JS', express.static('public/JS'));
 app.use('/CSS', express.static('public/CSS'));
 app.use('/ref', express.static('public/ref'));
 app.use(express.urlencoded({ extended: true }));
+
+var jwt = require('jsonwebtoken');
+
+var passport = require('passport');
+var passportJWT = require("passport-jwt");
+var cookieParser = require('cookie-parser');
+var JwtStrategy = passportJWT.Strategy;
+
+
+var cookieExtractor = function(req) {
+    var token = null;
+    if (req && req.cookies) {
+        token = req.cookies.jwt;
+    }
+    return token;
+  };
+  // strategy for using web token authentication
+  var jwtOptions = {}
+  jwtOptions.jwtFromRequest = cookieExtractor;
+  
+  jwtOptions.secretOrKey = process.env.JWT_SECRET;
+  
+  var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+    
+      db.query(`select email from users where email='${jwt_payload.email}'`,(err,row)=>{
+        if(err) throw err;
+        if (row[0].email) {
+              next(null, row[0].email);
+          } else {
+              next(null, false);
+          }
+      });
+  });
+  passport.use(strategy);
+
+  app.use(cookieParser())
+  app.use(passport.initialize());
+
 app.get('/', (req, res) => {
     res.render('Pages/index');
 });
@@ -75,7 +113,10 @@ app.post('/login', (req, res) => {
                 
                 if (data[0].count == 1) {
                     flag = true;
-                    res.render('Pages/taskList');
+                    var payload = {email: req.body.email};
+                    var token = jwt.sign(payload, jwtOptions.secretOrKey);
+                    res.cookie('jwt',token);
+                    res.redirect('/taskList');
                 }
                 else if (item == row.length - 1 && flag == false) {
                     res.end('login unsucessful');
@@ -87,37 +128,40 @@ app.post('/login', (req, res) => {
     });
 });
 
+app.get('/taskList', passport.authenticate('jwt', { session: false }),(req,res)=>{
+    res.render('Pages/taskList');
+});
 
 /* task-1 Dynemic table ---START*/
-app.get('/task1',(req,res)=>
+app.get('/task1', passport.authenticate('jwt', { session: false }),(req,res)=>
 {
     res.render('Pages/Task1');
 });
 /* task-1 Dynemic table ---END*/
 
 /* task-2 All event table ---START*/
-app.get('/task2',(req,res)=>
+app.get('/task2', passport.authenticate('jwt', { session: false }),(req,res)=>
 {
     res.render('Pages/Task2');
 });
 /* task-2 all event table ---END*/
 
 /* task-3 kuku cube ---START*/
-app.get('/task3',(req,res)=>
+app.get('/task3', passport.authenticate('jwt', { session: false }),(req,res)=>
 {
     res.render('Pages/Task3');
 });
 /* task-3 kuku cube ---END*/
 
 /* task-4 TicTacToe ---START*/
-app.get('/task4',(req,res)=>
+app.get('/task4', passport.authenticate('jwt', { session: false }),(req,res)=>
 {
     res.render('Pages/Task4');
 });
 /* task-4 TicTacToe ---END*/
 
 /* task-5 grid ---START*/
-app.get('/task5',(req,res)=>{
+app.get('/task5', passport.authenticate('jwt', { session: false }),(req,res)=>{
     db.query('select * from StudentMaster order by StudentId  limit 0,10;',(err,row,fields)=>{
         if(err) throw err;
         var col = []
@@ -131,12 +175,12 @@ app.get('/task5',(req,res)=>{
 /* task-5 grid ---END*/
 
 /* task-6 pagination ---START */
-app.get('/Task6',(req,res)=>{
+app.get('/Task6', passport.authenticate('jwt', { session: false }),(req,res)=>{
     res.redirect('/Task6/1');
 });
 
 
-app.get('/Task6/:id',(req,res)=>{
+app.get('/Task6/:id', passport.authenticate('jwt', { session: false }),(req,res)=>{
     var id = req.params.id;
     var numRow = 4;
     var maxPage;
@@ -159,11 +203,11 @@ app.get('/Task6/:id',(req,res)=>{
 /* task-6 pagination ---END */
 
 /* task-7 Sorting  ---START*/
-app.get('/Task7',(req,res)=>{
+app.get('/Task7', passport.authenticate('jwt', { session: false }),(req,res)=>{
     res.redirect('/Task7/StudentId/1');
 });
 
-app.get('/Task7/:col/:id',(req,res)=>{ 
+app.get('/Task7/:col/:id', passport.authenticate('jwt', { session: false }),(req,res)=>{ 
         var colName = req.params.col;
         var id = req.params.id;
         var numRow = 4;
@@ -187,7 +231,7 @@ app.get('/Task7/:col/:id',(req,res)=>{
 /* task-7 Sorting  ---END*/
 
 /* task-8 Searching ---START */
-app.get('/Task8/:id/:search',(req,res)=>{
+app.get('/Task8/:id/:search', passport.authenticate('jwt', { session: false }),(req,res)=>{
     var id = req.params.id;
     var search = req.params.search.split(',');
 
@@ -232,11 +276,11 @@ app.get('/Task8/:id/:search',(req,res)=>{
 /* task-8 Searching ---END */
 
 /* task-9 Searching with delimeter ---START */
-app.get('/Task9', (req, res) => {
+app.get('/Task9', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.render('Pages/Task9');
 });
 
-app.post('/Task9', (req, res) => {
+app.post('/Task9', passport.authenticate('jwt', { session: false }), (req, res) => {
     var str = req.body.str;
     var deli = ['_', '^', '$', '}', '{', ':'];
     var min = [];
@@ -340,15 +384,15 @@ app.post('/Task9', (req, res) => {
 /* task-9 Searching with delimeter ---END */
 
 /* task-10 CRUD ---START*/
-app.get('/Task10', (req, res) => {
+app.get('/Task10', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.render('Pages/Task10');
 });
 
-app.get('/Task10/:id', (req, res) => {
+app.get('/Task10/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.render('Pages/Task10');
 });
 
-app.post('/Task10/:id', (req, res) => {
+app.post('/Task10/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     let id = req.params.id;
     db.query(`update Candidatemaster set FirstName = '${req.body.FirstName}',LastName = '${req.body.LastName}',Designation='${req.body.bd_Designation}',Adddress1='${req.body.Address1}',Address2='${req.body.Address2}',City='${req.body.City}',State='${req.body.State}',ZipCode='${req.body.ZipCode}',Email='${req.body.Email}',Phone='${req.body.Phone}',Gender='${req.body.Gender}',RelationshipStatus='${req.body.RelationStatus}',DateOfBirth='${req.body.DOB}' where CandidateId=${id}`, (err) => {
         if (err) throw err;
@@ -626,7 +670,7 @@ app.get('/db', (req, res) => {
 
 /* task-11 Result table ---START */
 
-app.get('/result/:colName/:page',(req,res)=>{
+app.get('/result/:colName/:page', passport.authenticate('jwt', { session: false }),(req,res)=>{
     var page = req.params.page;
     var colName = req.params.colName;
     var numRow = 10;
@@ -647,11 +691,11 @@ app.get('/result/:colName/:page',(req,res)=>{
     
 });
 
-app.get('/result',(req,res)=>{
+app.get('/result', passport.authenticate('jwt', { session: false }),(req,res)=>{
     res.redirect('/result/StudentId/1')
 });
 
-app.get('/resultTable/:id',(req,res)=>{
+app.get('/resultTable/:id', passport.authenticate('jwt', { session: false }),(req,res)=>{
     var id = req.params.id;
     db.query(`select s.StudentId,s.FirstName,s.LastName,sb.SubjectId,sb.SubjectName,e.ExamId,e.ExamName,r.ObtainMarksTheory,r.ObtainMarksPractical,(r.ObtainMarksTheory + r.ObtainMarksPractical) as Total from StudentMaster as s  inner join Result as r on s.StudentId = r.StudentId  inner join Task3.SubjectMaster as sb on r.SubjectId = sb.SubjectId inner join Task3.ExamMaster as e on e.ExamId = r.ExamId
      where s.StudentId = ${id};`,(err,row)=>{
@@ -660,7 +704,7 @@ app.get('/resultTable/:id',(req,res)=>{
      });
 });
 
-app.get('/resultTable',(req,res)=>{
+app.get('/resultTable', passport.authenticate('jwt', { session: false }),(req,res)=>{
     res.redirect('/resultTable/1')
 });
 
@@ -668,10 +712,10 @@ app.get('/resultTable',(req,res)=>{
 
 /* task-12 job application with ajax ---START */
 
-app.get('/Task12', (req, res) => {
+app.get('/Task12', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.redirect('/Task12/display');
 });
-app.post('/Task12', (req, res) => {
+app.post('/Task12', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     idPromise = () => {
         return new Promise((resolve, reject) => {
@@ -795,13 +839,13 @@ app.post('/Task12', (req, res) => {
     sequentialQueries();
     // res.send(req.body['Language[]']);
 });
-app.get('/Task12/display', (req, res) => {
+app.get('/Task12/display', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.render('Pages/display');
 });
-app.get('/Task12/update/:id', (req, res) => {
+app.get('/Task12/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.render('Pages/Task12');
 });
-app.post('/Task12/update/:id', (req, res) => {
+app.post('/Task12/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     let id = req.params.id;
     db.query(`update Candidatemaster set FirstName = '${req.body.FirstName}',LastName = '${req.body.LastName}',Designation='${req.body.bd_Designation}',Adddress1='${req.body.Address1}',Address2='${req.body.Address2}',City='${req.body.City}',State='${req.body.State}',ZipCode='${req.body.ZipCode}',Email='${req.body.Email}',Phone='${req.body.Phone}',Gender='${req.body.Gender}',RelationshipStatus='${req.body.RelationStatus}',DateOfBirth='${req.body.DOB}' where CandidateId=${id}`, (err) => {
         if (err) throw err;

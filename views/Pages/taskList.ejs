@@ -9,6 +9,7 @@
 
 </head>
 <body>
+    <button onclick="LogoutFun()" class="btn btn-danger">Logout</button>
     <table class="table table-success table-striped w-50 mx-auto text-center">
         <tr>
             <th>Task Name</th>
@@ -63,5 +64,13 @@
             <td><a href="/Task12">View</a></td>
         </tr>
     </table>
+    <script>
+        function LogoutFun()
+        {
+            console.log(document.cookie);
+            document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.replace("http://localhost:8080/login"); 
+        }
+    </script>
 </body>
 </html>
