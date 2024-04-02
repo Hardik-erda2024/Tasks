@@ -15,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use('/JS', express.static('public/JS'));
 app.use('/CSS', express.static('public/CSS'));
 app.use('/ref', express.static('public/ref'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 var jwt = require('jsonwebtoken');
@@ -31,28 +32,28 @@ var cookieExtractor = function(req) {
         token = req.cookies.jwt;
     }
     return token;
-  };
-  // strategy for using web token authentication
-  var jwtOptions = {}
-  jwtOptions.jwtFromRequest = cookieExtractor;
-  
-  jwtOptions.secretOrKey = process.env.JWT_SECRET;
-  
-  var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+};
+// strategy for using web token authentication
+var jwtOptions = {}
+jwtOptions.jwtFromRequest = cookieExtractor;
+
+jwtOptions.secretOrKey = process.env.JWT_SECRET;
+
+var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
     
-      db.query(`select email from users where email='${jwt_payload.email}'`,(err,row)=>{
+    db.query(`select email from users where email='${jwt_payload.email}'`,(err,row)=>{
         if(err) throw err;
         if (row[0].email) {
-              next(null, row[0].email);
-          } else {
-              next(null, false);
-          }
-      });
-  });
-  passport.use(strategy);
+            next(null, row[0].email);
+        } else {
+            next(null, false);
+        }
+    });
+});
+passport.use(strategy);
 
-  app.use(cookieParser())
-  app.use(passport.initialize());
+app.use(cookieParser())
+app.use(passport.initialize());
 
 app.get('/', (req, res) => {
     res.render('Pages/index');
@@ -715,8 +716,11 @@ app.get('/resultTable', passport.authenticate('jwt', { session: false }),(req,re
 app.get('/Task12', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.redirect('/Task12/display');
 });
+app.get('/Task12/add', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.render('Pages/Task12');
+});
 app.post('/Task12', passport.authenticate('jwt', { session: false }), (req, res) => {
-
+    
     idPromise = () => {
         return new Promise((resolve, reject) => {
 
@@ -845,8 +849,9 @@ app.get('/Task12/display', passport.authenticate('jwt', { session: false }), (re
 app.get('/Task12/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.render('Pages/Task12');
 });
-app.post('/Task12/update/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.post('/Task12/update/:id',passport.authenticate('jwt', { session: false }), (req, res) => {
     let id = req.params.id;
+    console.log(req.body.FirstName);
     db.query(`update Candidatemaster set FirstName = '${req.body.FirstName}',LastName = '${req.body.LastName}',Designation='${req.body.bd_Designation}',Adddress1='${req.body.Address1}',Address2='${req.body.Address2}',City='${req.body.City}',State='${req.body.State}',ZipCode='${req.body.ZipCode}',Email='${req.body.Email}',Phone='${req.body.Phone}',Gender='${req.body.Gender}',RelationshipStatus='${req.body.RelationStatus}',DateOfBirth='${req.body.DOB}' where CandidateId=${id}`, (err) => {
         if (err) throw err;
     })
