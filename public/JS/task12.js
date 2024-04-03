@@ -1,10 +1,13 @@
+
 const path = window.location.pathname.split("/");
+
     const Id = path[path.length - 1];
     const update = path[path.length - 2];
+    
     async function fetchDB()
     { 
         
-        let response = await fetch(`http://localhost:8080/db-Candidatemaster/${Id}`);
+        let response = await fetch(`http://localhost:${window.location.port}/db-Candidatemaster/${Id}`);
         let data = await response.json();
         var key=Object.keys(data[0]);
         key.forEach((item)=>{
@@ -25,7 +28,7 @@ const path = window.location.pathname.split("/");
         });
         
         
-        response = await fetch(`http://localhost:8080/db-EducationDetails/${Id}`);
+        response = await fetch(`http://localhost:${window.location.port}/db-EducationDetails/${Id}`);
         data = await response.json();
         key=Object.keys(data);
         key.forEach((i)=>{
@@ -37,7 +40,7 @@ const path = window.location.pathname.split("/");
 
         
 
-        response = await fetch(`http://localhost:8080/db-WorkExprience/${Id}`);
+        response = await fetch(`http://localhost:${window.location.port}/db-WorkExprience/${Id}`);
         data = await response.json();
         key=Object.keys(data);
         key.forEach((i)=>{
@@ -48,7 +51,7 @@ const path = window.location.pathname.split("/");
         });
 
 
-        response = await fetch(`http://localhost:8080/db-LanguageTable/${Id}`);
+        response = await fetch(`http://localhost:${window.location.port}/db-LanguageTable/${Id}`);
         data = await response.json();
         let lang =document.getElementsByName('Language[]');
         let langId = document.getElementsByName('LanguageId');
@@ -79,7 +82,7 @@ const path = window.location.pathname.split("/");
         
 
 
-        response = await fetch(`http://localhost:8080/db-TechnologiesTable/${Id}`);
+        response = await fetch(`http://localhost:${window.location.port}/db-TechnologiesTable/${Id}`);
         data = await response.json();
         console.log(data);
         let tech = document.getElementsByName('Technoloy[]');
@@ -96,7 +99,7 @@ const path = window.location.pathname.split("/");
             })
         });
 
-        response = await fetch(`http://localhost:8080/db-ReferanceContact/${Id}`);
+        response = await fetch(`http://localhost:${window.location.port}/db-ReferanceContact/${Id}`);
         data = await response.json();
         key=Object.keys(data);
         key.forEach((i)=>{
@@ -106,7 +109,7 @@ const path = window.location.pathname.split("/");
             });
         });
 
-        response = await fetch(`http://localhost:8080/db-Perferances/${Id}`);
+        response = await fetch(`http://localhost:${window.location.port}/db-Perferances/${Id}`);
         data = await response.json();
         key=Object.keys(data);
         key.forEach((i)=>{
@@ -138,7 +141,7 @@ async function upFun()
             }
         });
         console.log(obj);
-        let response = await fetch('http://localhost:8080/Task12/update/'+Id, {
+        let response = await fetch('http://localhost:${window.location.port}/Task12/update/'+Id, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -147,7 +150,7 @@ async function upFun()
             })
         let data = await response.text();
         console.log(data);
-        window.location = "http://localhost:8080/Task12/display";
+        window.location = "http://localhost:${window.location.port}/Task12/display";
 }
 function nxtdiv() {
     let flag =formValidationFun()
@@ -227,7 +230,7 @@ async function subFun()
             }
         });
         console.log(obj);
-        let response = await fetch('http://localhost:8080/Task12', {
+        let response = await fetch('http://localhost:${window.location.port}/Task12', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -236,5 +239,5 @@ async function subFun()
             })
         let data = await response.text();
             alert(data);
-            window.location = "http://localhost:8080/Task12/display";
+            window.location = "http://localhost:${window.location.port}/Task12/display";
     }
