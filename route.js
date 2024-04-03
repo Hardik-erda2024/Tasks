@@ -7,6 +7,8 @@ passport.use(strategy);
 
 const {getRegister,postRegister,getAccountActivationCode,postAccountActivationCode,getLogin,postlogin,getTaskList} = require('./app/controller/mainTask/controller');
 const {getTask1,getTask2,getTask3,getTask4,getTask5,getTask6,getTask6Id, getTask7Id, getTask7, getTask8, getTask9, postTask9} = require('./app/controller/Task1-9/controller');
+const { getTask10, postTask10Id, postTask10 } = require('./app/controller/Task10/controller');
+const {getCandidatemaster,getEducationDetails,getLanguageTable,getPerferances,getReferanceTable,getTechnologiesTable,getWorkExprience} = require('./app/controller/Task10/dbController');
 
 router.get('/',getRegister);
 router.post('/',postRegister);
@@ -27,5 +29,16 @@ router.get('/task7/:col/:id',passport.authenticate('jwt', { session: false }),ge
 router.get('/task8/:id/:search',passport.authenticate('jwt', { session: false }),getTask8);
 router.get('/task9',passport.authenticate('jwt', { session: false }),getTask9);
 router.post('/task9',passport.authenticate('jwt', { session: false }),postTask9);
+router.get('/task10',passport.authenticate('jwt', { session: false }),getTask10);
+router.get('/task10/:id',passport.authenticate('jwt', { session: false }),getTask10);
+router.post('/task10/:id',passport.authenticate('jwt', { session: false }),postTask10Id);
+router.post('/task10',passport.authenticate('jwt', { session: false }),postTask10);
+router.get('/db-Candidatemaster/:id',getCandidatemaster);
+router.get('/db-EducationDetails/:id',getEducationDetails);
+router.get('/db-WorkExprience/:id',getWorkExprience);
+router.get('/db-LanguageTable/:id',getLanguageTable);
+router.get('/db-TechnologiesTable/:id',getTechnologiesTable);
+router.get('/db-ReferanceContact/:id',getReferanceTable);
+router.get('/db-Perferances/:id',getPerferances);
 
 module.exports = router;
