@@ -55,4 +55,12 @@ const getPerferances = (req, res) => {
     });
 }
 
-module.exports = {getCandidatemaster,getEducationDetails,getWorkExprience,getLanguageTable,getTechnologiesTable,getReferanceTable,getPerferances}
+const getCandidatemasterAll = (req, res) => {
+
+    db.query(`select CandidateId as id,FirstName, LastName, Email, Phone from Candidatemaster`, (err, row) => {
+        if (err) throw err;
+        res.json(row);
+    });
+}
+
+module.exports = {getCandidatemaster,getEducationDetails,getWorkExprience,getLanguageTable,getTechnologiesTable,getReferanceTable,getPerferances,getCandidatemasterAll}

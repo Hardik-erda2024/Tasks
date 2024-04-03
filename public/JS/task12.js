@@ -141,7 +141,7 @@ async function upFun()
             }
         });
         console.log(obj);
-        let response = await fetch('http://localhost:${window.location.port}/Task12/update/'+Id, {
+        let response = await fetch(`http://localhost:${window.location.port}/Task12/update/${Id}`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -150,7 +150,7 @@ async function upFun()
             })
         let data = await response.text();
         console.log(data);
-        window.location = "http://localhost:${window.location.port}/Task12/display";
+        window.location = `http://localhost:${window.location.port}/Task12/display`;
 }
 function nxtdiv() {
     let flag =formValidationFun()
@@ -230,7 +230,7 @@ async function subFun()
             }
         });
         console.log(obj);
-        let response = await fetch('http://localhost:${window.location.port}/Task12', {
+        let response = await fetch(`http://localhost:${window.location.port}/Task12`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -239,5 +239,5 @@ async function subFun()
             })
         let data = await response.text();
             alert(data);
-            window.location = "http://localhost:${window.location.port}/Task12/display";
+            window.location = `http://localhost:${window.location.port}/Task12/display`;
     }
