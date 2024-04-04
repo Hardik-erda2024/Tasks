@@ -13,8 +13,7 @@ const postTask10Id = (req, res) => {
         
         for (i = 0; i < req.body.bord.length; i++) {
             if (req.body.bord[i] != '') {
-                if(req.body.hiddenId[i] == '')
-                {
+                if(req.body.hiddenId[i] == ''){
                     db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES ('${id}', '${req.body.bord[i]}', '${req.body.year[i]}', '${req.body.percentage[i]}')`, (err) => {
                         if (err) throw err;
                     });
@@ -32,8 +31,7 @@ const postTask10Id = (req, res) => {
 
     for (i = 0; i < req.body.Companyname.length; i++) {
         if (req.body.Companyname[i] != '') {
-            if(req.body.WorkhiddenId[i] == '')
-            {
+            if(req.body.WorkhiddenId[i] == ''){
                 db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES ('${id}', '${req.body.Companyname[i]}', '${req.body.Designation[i]}', '${req.body.dateFrom[i]}', '${req.body.dateTo[i]}');`
                     , (err) => {
                         if (err) throw err;
@@ -43,7 +41,6 @@ const postTask10Id = (req, res) => {
                 , (err) => {
                     if (err) throw err;
                 });
-
         }
     }
     /* END*/
@@ -134,7 +131,7 @@ const postTask10 = (req, res) => {
         /* insert into workExprience table - START */
         for (i = 0; i < req.body.Companyname.length; i++) {
             if (req.body.Companyname[i] != '') {
-                console.log("inside of work");
+                
                 db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES ('${id}', '${req.body.Companyname[i]}', '${req.body.Designation[i]}', '${req.body.dateFrom[i]}', '${req.body.dateTo[i]}');`
                     , (err) => {
                         if (err) throw err;
@@ -152,7 +149,6 @@ const postTask10 = (req, res) => {
                     , (err) => {
                         if (err) throw err;
                     });
-
             }
         }
         /* insert into ReferanceContact table - END */
@@ -164,7 +160,6 @@ const postTask10 = (req, res) => {
                 , (err) => {
                     if (err) throw err;
                 });
-
         }
 
         /* insert into Perferances table - END */

@@ -60,7 +60,7 @@ const getTask7Id =(req,res)=>{
     var numRow = 4;
     var maxPage = 2;
     var currentPage = (id-1) * numRow;
-    // console.log(currentPage);
+    
     db.query('select count(StudentId)as sid from StudentMaster',(err,count)=>{
         if(err) throw err;
         maxPage = count[0].sid / numRow;
@@ -68,8 +68,7 @@ const getTask7Id =(req,res)=>{
     db.query('select * from StudentMaster order by '+colName+' LIMIT '+currentPage+','+numRow+';',(err,row,fields)=>{
         if(err) throw err;
         var col = [];
-    for(i in fields)
-    {
+    for(i in fields){
         col.push(fields[i].name);
     }
     res.render('Pages/Task7-Sorting',{'id':id,'maxPage':maxPage,'row':row,'col':col,'colName':colName});
@@ -79,21 +78,17 @@ const getTask7Id =(req,res)=>{
 const getTask8 = (req,res)=>{
     var id = req.params.id;
     var search = req.params.search.split(',');
-
-    // console.log(search);
     var numRow = 4;
     var maxPage = 2;
     var currentPage = (id-1) * numRow;
-    // console.log(currentPage);
-    if(search[0] == "s_id")
-    {
+    
+    if(search[0] == "s_id"){
         maxPage = 1
          
         db.query(`select * from StudentMaster where StudentId = '${search[1]}' LIMIT ${currentPage},${numRow}`,(err,row,fields)=>{
             if(err) throw err;
             var col = [];
-        for(i in fields)
-        {
+        for(i in fields){
             col.push(fields[i].name);
         }
         res.render('Pages/Task8-Searching',{'id':id,'maxPage':maxPage,'row':row,'col':col,'search':search});
@@ -103,14 +98,11 @@ const getTask8 = (req,res)=>{
         db.query(`select count(StudentId)as sid from StudentMaster where case when ('${search[0]}' = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '${search[0]}%') end ${search[1]} case when ('${search[2]}' = '') then (LastName like '') else (LastName like '${search[2]}%') end ${search[1]} case when ('${search[3]}' = '') then (City like '') else (City like '${search[3]}%') end`,(err,count)=>{
             if(err) throw err;
             maxPage = Math.ceil( count[0].sid / numRow);
-            console.log(`select count(StudentId)as sid from StudentMaster where FirstName like'${search[0]}%' ${search[1]} LastName like'${search[2]}%' ${search[1]} City like'${search[3]}%'`);
-            
         });
         db.query(`select * from StudentMaster where case when ('${search[0]}' = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '${search[0]}%') end ${search[1]} case when ('${search[2]}' = '') then (LastName like '') else (LastName like '${search[2]}%') end ${search[1]} case when ('${search[3]}' = '') then (City like '') else (City like '${search[3]}%') end LIMIT ${currentPage},${numRow}`,(err,row,fields)=>{
             if(err) throw err;
             var col = [];
-        for(i in fields)
-        {
+        for(i in fields){
             col.push(fields[i].name);
         }
         res.render('Pages/Task8-Searching',{'id':id,'maxPage':maxPage,'row':row,'col':col,'search':search});
@@ -210,7 +202,7 @@ const postTask9 = (req, res) => {
         q = q.replaceAll(" OR )", ")");
         q = q.slice(0, -4)
     }
-    console.log(q);
+    
     db.query(q, (err, row, fields) => {
 
         if (err) throw err;
