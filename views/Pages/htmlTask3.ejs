@@ -313,13 +313,13 @@
         </div>
     </footer>
     <script>
-        var len = 100
+        let len = 100
         setInterval(function(e){
             if(len == 1800)
             {
                 len = -1800;
             }
-            var arrlen = document.getElementsByClassName("MQ").length;
+            let arrlen = document.getElementsByClassName("MQ").length;
             for(i=0;i<arrlen;i++)
             {
                 document.getElementsByClassName("MQ")[i].setAttribute("style","right: "+len+"px;");
@@ -328,7 +328,7 @@
         },150)
         function initFun()
         {
-            var len = document.getElementsByClassName("slidCon").length;
+            let len = document.getElementsByClassName("slidCon").length;
             for(i=1;i<len;i++)
             {
                 document.getElementsByClassName("slidCon")[i].setAttribute()

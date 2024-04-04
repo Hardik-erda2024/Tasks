@@ -25,9 +25,9 @@ const postTask12 = (req, res) => {
     async function sequentialQueries() {
         const id = await idPromise();
         /* insert into Education table - START */
-        var board = req.body.bord.split(',');
-        var year = req.body.year.split(',');
-        var percentage = req.body.percentage.split(',');
+        let board = req.body.bord.split(',');
+        let year = req.body.year.split(',');
+        let percentage = req.body.percentage.split(',');
         for (i = 0; i < board.length; i++) {
 
             if (board[i] != '') {
@@ -39,11 +39,11 @@ const postTask12 = (req, res) => {
         /* insert into Education table - START */
 
         /* insert into workExprience table - START */
-        var Companyname = req.body.Companyname.split(',');
+        let Companyname = req.body.Companyname.split(',');
         for (i = 0; i < Companyname.length; i++) {
-            var Designation = req.body.Designation.split(',');
-            var dateFrom = req.body.dateFrom.split(',');
-            var dateTo = req.body.dateTo.split(',');
+            let Designation = req.body.Designation.split(',');
+            let dateFrom = req.body.dateFrom.split(',');
+            let dateTo = req.body.dateTo.split(',');
             if (Companyname[i] != '') {
 
                 db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES (?,?,?,?,?);`,[id, Companyname[i], Designation[i], dateFrom[i], dateTo[i]]
@@ -57,9 +57,9 @@ const postTask12 = (req, res) => {
 
 
         /* insert into ReferanceContact table - START */
-        var refName = req.body.refName.split(',');
-        var refPhone = req.body.refPhone.split(',');
-        var refRelation = req.body.refRelation.split(',');
+        let refName = req.body.refName.split(',');
+        let refPhone = req.body.refPhone.split(',');
+        let refRelation = req.body.refRelation.split(',');
         for (i = 0; i < refName.length; i++) {
             if (refName[i] != '') {
                 db.query(`INSERT INTO ReferanceContact (CandidateId, Name, ContactNumber, Relation) VALUES (?,?,?,?);`,[id, refName[i], refPhone[i], refRelation[i]]
@@ -85,7 +85,7 @@ const postTask12 = (req, res) => {
 
         /* insert into LanguageTable  - START */
         if (req.body['Language[]'] != undefined) {
-            var lang = req.body['Language[]'].split(',');
+            let lang = req.body['Language[]'].split(',');
             for (i = 0; i < lang.length; i++) {
                 if (lang[i] != '') {
                     let read = req.body[lang[i] + "_read"];
@@ -112,7 +112,7 @@ const postTask12 = (req, res) => {
 
         /* insert into TechnologiesTable  - START */
         if (req.body['Technoloy[]'] != undefined) {
-            var techno = req.body['Technoloy[]'].split(',');
+            let techno = req.body['Technoloy[]'].split(',');
             for (i = 0; i < techno.length; i++) {
                 if (techno[i] != '') {
 
@@ -147,14 +147,14 @@ const postUpdateParm = (req, res) => {
         if (err) throw err;
     })
     /* update education table - Start*/
-    var board = req.body.bord.split(',');
-        var year = req.body.year.split(',');
-        var percentage = req.body.percentage.split(',');
-        var hiddenId =req.body.hiddenId.split(',');
+    let board = req.body.bord.split(',');
+        let year = req.body.year.split(',');
+        let percentage = req.body.percentage.split(',');
+        let hiddenId =req.body.hiddenId.split(',');
     for (i = 0; i < board.length; i++) {
         if (board[i] != '') {
             if (hiddenId[i] == '') {
-                db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES (?,?,?)`,[id, board[i], year[i], percentage[i]], (err) => {
+                db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES (?,?,?,?)`,[id, board[i], year[i], percentage[i]], (err) => {
                     if (err) throw err;
                 });
             }
@@ -169,11 +169,11 @@ const postUpdateParm = (req, res) => {
     /* END */
 
     /* update WorkExprience table */
-    var Companyname = req.body.Companyname.split(',');
-    var Designation = req.body.Designation.split(',');
-    var dateFrom = req.body.dateFrom.split(',');
-    var dateTo = req.body.dateTo.split(',');
-    var WorkhiddenId = req.body.WorkhiddenId.split(',');
+    let Companyname = req.body.Companyname.split(',');
+    let Designation = req.body.Designation.split(',');
+    let dateFrom = req.body.dateFrom.split(',');
+    let dateTo = req.body.dateTo.split(',');
+    let WorkhiddenId = req.body.WorkhiddenId.split(',');
     for (i = 0; i < Companyname.length; i++) {
         if (Companyname[i] != '') {
             if (WorkhiddenId[i] == '') {
@@ -193,18 +193,12 @@ const postUpdateParm = (req, res) => {
     }
     /* END*/
     /* update langauge table */
-    var lang = req.body['Language[]'].split(',');
-    var LanguageId = req.body.LanguageId.split(',');
+    let lang = req.body['Language[]'].split(',');
+    let LanguageId = req.body.LanguageId.split(',');
+    console.log(lang,LanguageId);
     if (lang != undefined) {
 
-        for (i = 0; i < LanguageId.length; i++) {
-            if(LanguageId[i] != ''){
-                if(lang[i] == ''){
-                    db.query(`DELETE FROM LanguageTable WHERE LanguageId=?`,[LanguageId[i]],(err)=>{
-                        if(err) throw err;
-                    });
-                }
-            }
+        for (i = 0; i < lang.length; i++) {
             if (lang[i] != '') {
                 let read = req.body[lang[i] + "_read"];
                 let write = req.body[lang[i] + "_write"];
@@ -237,18 +231,11 @@ const postUpdateParm = (req, res) => {
     }
     /* END */
     /* update Techology table */
-    var techno = req.body['Technoloy[]'].split(',');
-    var TechnologieID = req.body.TechnologieID.split(',');
+    let techno = req.body['Technoloy[]'].split(',');
+    let TechnologieID = req.body.TechnologieID.split(',');
     if (techno != undefined) {
         for (i = 0; i < TechnologieID.length; i++) {
-            if(TechnologieID[i] != ''){
-                if(techno[i] == undefined){
-                    db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =?`,[TechnologieID[i]],(err)=>{
-                        if(err) throw err;
-                    });
-                }
-            }
-            else{
+            
 
                 if (techno[i] != '') {
                     
@@ -267,25 +254,18 @@ const postUpdateParm = (req, res) => {
                     }
                 }
 
-            }
+            
         }
     }
     /* END */
     /* update refrace table */
-    var refName = req.body.refName.split(',');
-        var refPhone = req.body.refPhone.split(',');
-        var refRelation = req.body.refRelation.split(',');
-        var ReferanceId = req.body.ReferanceId.split(',');
+    let refName = req.body.refName.split(',');
+        let refPhone = req.body.refPhone.split(',');
+        let refRelation = req.body.refRelation.split(',');
+        let ReferanceId = req.body.ReferanceId.split(',');
         
-    for (i = 0; i < ReferanceId.length; i++) {
+    for (i = 0; i < refName.length; i++) {
         
-        if(ReferanceId[i] != ''){
-            if(refName[i] == ''){
-                db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =?`,[TechnologieID[i]],(err)=>{
-                    if(err) throw err;
-                });
-            }
-        }
         if (refName[i] != '') {
             if(ReferanceId[i] != ''){
 
