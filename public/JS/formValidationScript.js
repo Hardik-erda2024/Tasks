@@ -106,7 +106,7 @@ if(datevalidate.length !=0)
   {
     if(!(datevalidate[i].value.match(dateRegx)) && !(datevalidate[i].value == ''))
     {
-      console.log(datevalidate[i].value);
+      
       var span = document.createElement('span');
       span.innerHTML = " Enter valid date(YYYY-MM-DD)";
       span.className = "err";
@@ -182,26 +182,20 @@ if(datevalidate.length !=0)
 var paraRequired = document.querySelectorAll('.paraRequired');
 var paraFlag = 0;
 var len =0;
-// console.log(paraRequired.length+"---paraRequiredLen");
 if(paraRequired.length != 0)
 {
   for(i=0;i<paraRequired.length;i++)
   {
     var parachildren = paraRequired[i].children;
-    // console.log(parachildren.length+"----parachildrenLen");
     
     for(j=0;j<parachildren.length;j++)
     {
       if(parachildren[j].value != undefined)
       {
-        // console.log(parachildren[j].value)
         len++;
-        // console.log(len+'----len');
-        // console.log(parachildren[j].value+"----value");
         if(parachildren[j].value != '' )
         {
           paraFlag++;
-          console.log(paraFlag+"----paraFlag");
           
         }
       }
@@ -213,7 +207,7 @@ if(paraRequired.length != 0)
       {
         if(parachildren[i].value != undefined)
         {
-          // console.log('err'+parachildren[i].value);
+        
           var span = document.createElement('span');
           span.innerHTML = " * ";
           span.className = "err";

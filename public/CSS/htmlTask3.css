@@ -1,0 +1,472 @@
+:root{
+    --green: #389B48;
+}
+body{
+    background-color: #F2F0E6;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:"slnt" 0;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: underline;
+    color: #000000;
+}
+.container
+{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+.ribeye-regular {
+    font-family: "Ribeye", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+.inter-semiBold{
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 40px;
+}
+.grote-Bold
+{
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+.navRow
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.BaseLineRow
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.navRow a{
+    text-decoration: none;
+    margin: 0 15px;
+    color: #000000;
+
+}
+
+.navRow li{
+    list-style: none;
+    
+}
+.navRow button{
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px 16px;
+    border: #000000 solid;
+    border-radius: 6px;
+}
+
+.headerRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heroRow
+{
+    display: flex;
+    align-items: center;
+}
+.heroRow p{
+    word-wrap: break-word;
+}
+.heroCol{
+    display: flex;
+    flex-direction: column;
+    
+}
+.heroCol > label{
+    margin-bottom: 10px;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 24px;
+}
+h1{
+    font-size: 86px;
+    word-wrap: break-word;
+    font-weight: 600;
+}
+
+input{
+    
+    padding: 15px 20px;
+    font-size: 18px;
+    border: 3px solid #000000;
+    box-shadow: 7px 7px #000000;
+    border-radius: 3%;
+}
+input:focus{
+    outline: none;
+}
+form button{
+    
+    border: 3px solid #000000;
+    box-shadow: 7px 7px #000000;
+    background-color: #FFBB38;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: -10px;
+}
+.divImg{
+    display: flex;
+    background-color: #fcde93;
+    justify-content: center;
+    border-radius: 15px;
+    width: 272px;
+    height: 66px;
+    align-items: center;
+    padding: 5px 20px;
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.heroImg{
+    position: relative;
+}
+
+.Vacter1{
+    background-color: #FC7F3A;
+    border-radius: 50%;
+    width: 256px;
+    height: 256px;
+    position: relative;
+    top: 50px;
+  left: 90px;
+  z-index: 1;
+}
+
+.abImg{
+    position: absolute;
+    top:10px;
+    left: 126px;
+}
+
+.abText{
+    font-size: 40px;
+    position: absolute;
+    line-height: 46px;
+    top: 103px;
+    left: 71px;
+}
+
+.Vacter2{
+    width: 258px;
+    height: 258px;
+    background-color: #FFBB38;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    position: relative;
+    z-index: 0;
+}
+.abImgV2{
+    position: absolute;
+    top: 17px;
+    left: 12px;
+}
+.abTextV2{
+    font-size: 40px;
+    position: absolute;
+    line-height: 46px;
+    top: 106px;
+    left: 64px;
+}
+.Vacter3{
+    width: 233px;
+    height: 226px;
+    background-color: var(--green);
+    position: relative;
+    z-index: 1;
+    top: -67px;
+    left: -165px;
+
+}
+.abImgV3{
+    position: absolute;
+    top: 128px;
+    left: 122px;
+}
+.abTextV3{
+    font-size: 40px;
+    position: absolute;
+    line-height: 46px;
+    top: 20px;
+    left: 25px;
+    color: #FFFFFF;
+}
+.abImg4{
+    position: absolute;
+    top: 548px;
+    left: 162px;
+    width: 117px;
+    height: 101px;
+}
+
+.bgBlack
+{
+    background-color: #000000;
+}
+.Banner{
+ display: flex;   
+ justify-content: space-between;
+ align-items: center;
+ padding: 5px 50px;
+}
+
+.Banner label{
+    color: #FFFFFF;
+    font-size: 35px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 800;
+}
+
+.Banner span{
+    color: #FC7F3A;
+    font-size: 45px;
+    font-weight: 600;
+    padding: 0 20px;
+}
+
+.serviceRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.serviceText
+{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+
+    
+}
+.serviceText p{
+    font-size: 20px;
+    font-weight: 400;
+    width: 29%;
+}
+.wordWrap{
+    word-wrap: break-word;
+    
+}
+.fillLable
+{
+    border: 1px solid;
+    border-radius: 25px;
+    padding: 5px 15px;
+    font-family: 'Inter';
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.card{
+    background-color: #EBE9DE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-radius: 10px;
+    /* width: 25%; */
+}
+
+.BoxBtn
+{
+    border: 1px solid black;
+    box-shadow: 5px 5px black;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.workRow
+{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.workRowcol
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.ImgFram{
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    background-image: url('assets/testimonials-img.png');
+    width: 370px;
+    height: 450px;
+    border: 2px solid #000000;
+    margin: 50px 0;
+    position: relative;
+}
+.ImgFram > label{
+    position: absolute;
+    top:425px;
+    left: 111px;
+}
+.ImgFram > label > img
+{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000000;
+    padding: 7px 7px;
+    box-shadow: 3px 3px #000000;
+}
+h2{
+    margin: 0;
+}
+.pCard:hover{
+    background-color: #000000;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+    margin-top: -40px;
+}
+.pCard:hover > button{
+    box-shadow: 5px 5px #FFFFFF;
+}
+.pCard:hover > .divHr{
+    background-color: #FFFFFF;
+}
+.divHr
+{
+    background-color: black;
+    height: 2px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.Borderunderline
+{
+    border-bottom: 2px solid; 
+    margin-right: 100px;
+}
+
+.MQ{
+    position: absolute;
+    width: 100%;
+    right: 100px;
+}
+
+.blInput
+{
+    border: none;
+    width: 100%;
+    box-shadow: none;
+}
+
+.bgGreen{
+    background-color: #389B48;
+}
+.bgYellow{
+    background-color: #FFBB38;
+}
+.bgBrightYellow
+{
+    background-color: #FFC80A;
+}
+.bgOrange{
+    background-color: #FC7F3A;
+}
+.bgBlue{
+    background-color: #458DC9;
+}
+.bgLightGreen
+{
+    background-color: #64E379;
+}
+.bgOffWhite
+{
+    background-color: #EBE9DE;
+}
+.bgPink
+{
+    background-color: #FC6868;
+}
+.textWhite{
+    color: #FFFFFF;
+}
+
+.floatR
+{
+    float: right;
+}
+.textAlineCen
+{
+    text-align: center;
+}
+
+.my120{
+    margin: 120px 0;
+}
+
+.fm22{
+    font-weight: 500;
+    font-size: 22px;
+}
+.f50{
+    font-size: 50px;
+}
+.w80{
+    width: 80%;
+}
+.w50{
+    width: 50%;
+}
+.w40
+{
+    width: 40%;
+}
+.w48
+{
+    width: 48%;
+}
+.w25
+{
+    width: 25%;
+}
+.w27
+{
+    width: 27%;
+}
+.pl5
+{
+    padding-left: 5px;
+}
+.pb30
+{
+    padding-bottom: 30px;
+}
+.pb50
+{
+    padding-bottom: 50px;
+}
+.pt50
+{
+    padding-top: 50px;
+}
+.m5
+{
+    margin: 5px;
+}
+
+.py50
+{
+    padding: 50px 0;
+}

@@ -1,0 +1,232 @@
+body{
+    background-color: #FFFFFF;
+    margin: 0;
+}
+ul{
+    display: flex;
+
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color: #1565D8;
+    font-weight: bolder;
+}
+li a{
+    font-family: 'open sens';
+    text-decoration: none;
+    color: #183B56;
+    margin: 0 15px;
+}
+button{
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-color: #1565D8;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #1565D8;
+    font-size: 14px;
+    font-weight: 800;
+}
+.solidbtn{
+    background-color: #1565D8;
+    color: #FFFFFF;
+    
+
+}
+header{
+    display: flex;
+    max-width: 1140px;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: baseline;
+    margin-top: 10px;
+}
+nav{
+    display: flex;
+    flex-wrap: wrap;
+}
+.divHero
+{
+    display: flex;
+    align-items: center;
+    
+}
+#HeroSec p{
+    color: #183B56;
+    word-wrap: break-word;
+    font-size: larger;
+}
+#HeroSec h2{
+    color: #183B56;
+    word-wrap: break-word;
+    font-size: 50px;
+}
+#services{
+    background-color: #F3F7FD;
+    padding: 100px 150px;
+}
+#tipsSec{
+    padding: 100px 150px;
+}
+h4{
+    color: #36B37E;
+}
+h2{
+    color: #183B56;
+    word-wrap: break-word;
+}
+.textBox{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.textBox div{
+    justify-content: center;
+    margin-top: 15px;
+    
+}
+.textBox p{
+    width: 70%;
+}
+.cardText{
+    text-align: left;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.col{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.col img{
+    margin-right: 10px;
+}
+.card{
+    background-color: #FFFFFF;
+    width: 25%;
+    padding: 40px 30px;
+    border-radius: 16px;
+    /* margin-top: 60px; */
+}
+.card div{
+    text-align: left;
+}
+.card p{
+    
+    word-wrap: break-word;
+    font-size: 15px;
+}
+.cardImg{
+    display: flex;
+    width: 47%;
+    height: 600px;
+    border-radius: 16px;
+    flex-direction: row;
+    align-items: end;
+    padding-left: 20px;
+    
+    
+}
+.cardImg h3{
+    color: #FFFFFF;
+    font-size: xx-large;
+    
+}
+footer{
+    background-color: #0D2436;
+    color: #F3F7FD;
+    display: flex;
+    padding: 50px 0;
+}
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.wordWrap{
+    word-wrap: break-word;
+}
+.fSmall{
+    font-size: smaller;
+}
+.iconSmall{
+    width: 24px;
+    height: 24px;
+}
+.icon{
+    border: solid #F3F7FD;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 16px;
+    align-items: center;
+    justify-content: center;
+}
+#reviewSec
+{
+    margin: 100px 0;
+}
+#benefitSec{
+    margin-bottom: 60px;
+    
+}
+
+.reviewRow{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.reviewCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.iconBig{
+    width: 65px;
+    height: 65px;
+}
+.EmailInput{
+    
+    padding: 10px;
+    border-radius: 5px;
+}
+.footerRow{
+    display: flex;
+    flex-direction: row;
+}
+.footerRow p{
+    line-height: 30px;
+}
+.whiteText
+{
+    color: #FFFFFF;
+    font-size: 30px;
+    line-height: 50px;
+}
+.MR-15{
+    margin-right: 15px;
+}
+.copyRight
+{
+    margin-top: 50px;
+    font-size: small;
+    color: #F3F7FD;
+}
+.mt60
+{
+    margin-top: 60px;
+}
+.hr{
+    padding-bottom: 50px;
+    border-bottom: 3px solid #E5EAF4 ;
+}
+.Big{
+    font-size: 100px;
+    color: #E5EAF4;
+
+}

@@ -134,6 +134,7 @@ async function upFun()
         new FormData(document.querySelector('form')).forEach((value,key)=>{
             if(obj[key] != undefined)
             {
+                console.log(value,key,'------------');
                 obj[key] += ","+value; 
             }
             else{

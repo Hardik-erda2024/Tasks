@@ -11,6 +11,7 @@ const { getTask10, postTask10Id, postTask10 } = require('./app/controller/Task10
 const {getCandidatemaster,getEducationDetails,getLanguageTable,getPerferances,getReferanceTable,getTechnologiesTable,getWorkExprience, getCandidatemasterAll} = require('./app/controller/Task10/dbController');
 const {getResult,getResultParm,getResultTable,getResultTableParm} = require('./app/controller/Task11/controller');
 const {getDisplay,getDisplayRedirect,getTask12Add,getUpdateParm,postTask12,postUpdateParm} = require('./app/controller/Task12/controller');
+const { getHtmlTask1, getHtmlTask2, getHtmlTask3 } = require('./app/controller/htmlTask/controller');
 
 router.get('/',getRegister);
 router.post('/',postRegister);
@@ -35,10 +36,6 @@ router.get('/task10',passport.authenticate('jwt', { session: false }),getTask10)
 router.get('/task10/:id',passport.authenticate('jwt', { session: false }),getTask10);
 router.post('/task10/:id',passport.authenticate('jwt', { session: false }),postTask10Id);
 router.post('/task10',passport.authenticate('jwt', { session: false }),postTask10);
-// router.get('/task10',passport.authenticate('jwt', { session: false }),getTask10);
-// router.get('/task10/:id',passport.authenticate('jwt', { session: false }),getTask10);
-// router.post('/task10/:id',passport.authenticate('jwt', { session: false }),postTask10Id);
-// router.post('/task10',passport.authenticate('jwt', { session: false }),postTask10);
 router.get('/db-Candidatemaster/:id',passport.authenticate('jwt',{session:false}),getCandidatemaster);
 router.get('/db-Candidatemaster',passport.authenticate('jwt',{session:false}),getCandidatemasterAll);
 router.get('/db-EducationDetails/:id',passport.authenticate('jwt',{session:false}),getEducationDetails);
@@ -57,6 +54,8 @@ router.post('/Task12',passport.authenticate('jwt',{session:false}),postTask12);
 router.get('/Task12/display',passport.authenticate('jwt',{session:false}),getDisplay);
 router.get('/Task12/update/:id',passport.authenticate('jwt',{session:false}),getUpdateParm);
 router.post('/Task12/update/:id',passport.authenticate('jwt',{session:false}),postUpdateParm);
-
+router.get('/htmlTask1',passport.authenticate('jwt',{session:false}),getHtmlTask1);
+router.get('/htmlTask2',passport.authenticate('jwt',{session:false}),getHtmlTask2);
+router.get('/htmlTask3',passport.authenticate('jwt',{session:false}),getHtmlTask3);
 
 module.exports = router;
