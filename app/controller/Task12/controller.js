@@ -15,7 +15,7 @@ const postTask12 = (req, res) => {
 
 
             db.query(`INSERT INTO Candidatemaster (FirstName, LastName, Designation, Adddress1, Address2, City, State, ZipCode, Email, Phone, Gender, RelationshipStatus, DateOfBirth) 
-    VALUES ('${req.body.FirstName}', '${req.body.LastName}', '${req.body.bd_Designation}', '${req.body.Address1}', '${req.body.Address2}', '${req.body.City}', '${req.body.State}', '${req.body.ZipCode}', '${req.body.Email}', '${req.body.Phone}', '${req.body.Gender}', '${req.body.RelationStatus}','${req.body.DOB}');`,
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,[req.body.FirstName,req.body.LastName,req.body.bd_Designation,req.body.Address1,req.body.Address2,req.body.City,req.body.State,req.body.ZipCode,req.body.Email,req.body.Phone,req.body.Gender, req.body.RelationStatus,req.body.DOB],
                 (err, result) => {
                     if (err) return reject(err);
                     return resolve(result.insertId);
@@ -31,7 +31,7 @@ const postTask12 = (req, res) => {
         for (i = 0; i < board.length; i++) {
 
             if (board[i] != '') {
-                db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES ('${id}', '${board[i]}', '${year[i]}', '${percentage[i]}')`, (err) => {
+                db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES (?,?,?,?)`,[id, board[i], year[i], percentage[i]], (err) => {
                     if (err) throw err;
                 });
             }
@@ -46,7 +46,7 @@ const postTask12 = (req, res) => {
             var dateTo = req.body.dateTo.split(',');
             if (Companyname[i] != '') {
 
-                db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES ('${id}', '${Companyname[i]}', '${Designation[i]}', '${dateFrom[i]}', '${dateTo[i]}');`
+                db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES (?,?,?,?,?);`,[id, Companyname[i], Designation[i], dateFrom[i], dateTo[i]]
                     , (err) => {
                         if (err) throw err;
                     });
@@ -62,7 +62,7 @@ const postTask12 = (req, res) => {
         var refRelation = req.body.refRelation.split(',');
         for (i = 0; i < refName.length; i++) {
             if (refName[i] != '') {
-                db.query(`INSERT INTO ReferanceContact (CandidateId, Name, ContactNumber, Relation) VALUES ('${id}', '${refName[i]}', '${refPhone[i]}', '${refRelation[i]}');`
+                db.query(`INSERT INTO ReferanceContact (CandidateId, Name, ContactNumber, Relation) VALUES (?,?,?,?);`,[id, refName[i], refPhone[i], refRelation[i]]
                     , (err) => {
                         if (err) throw err;
                     });
@@ -74,7 +74,7 @@ const postTask12 = (req, res) => {
         /* insert into Perferances table - START */
 
         if (req.body.PreferLocation != '') {
-            db.query(`INSERT INTO Perferances (CandidateId, Location, NoticePeriod, ExpactedCTC, CurrentCTC, Department) VALUES ('${id}', '${req.body.PreferLocation}', '${req.body.PreferNotice}','${req.body.PerferExCTC}','${req.body.PerferCuCTC}', '${req.body.Department}');`
+            db.query(`INSERT INTO Perferances (CandidateId, Location, NoticePeriod, ExpactedCTC, CurrentCTC, Department) VALUES (?,?,?,?,?,?);`,[id, req.body.PreferLocation, req.body.PreferNotice,req.body.PerferExCTC,req.body.PerferCuCTC, req.body.Department]
                 , (err) => {
                     if (err) throw err;
                 });
@@ -101,7 +101,7 @@ const postTask12 = (req, res) => {
                         speak = 0;
                     }
                     db.query(`INSERT INTO LanguageTable (CandidateId, Languagename, LanguageRead, LanguageWrite, LanguageSpeak)
-                        VALUES ('${id}', '${lang[i]}','${read}', '${write}', '${speak}');`, (err) => {
+                        VALUES (?,?,?,?,?);`,[id, lang[i],read, write, speak], (err) => {
                         if (err) throw err;
                     });
                 }
@@ -117,7 +117,7 @@ const postTask12 = (req, res) => {
                 if (techno[i] != '') {
 
                     db.query(`INSERT INTO TechnologiesTable (CandidateId, TechnoloieName, KnowlageLevel)
-                VALUES ('${id}', '${techno[i]}','${req.body[techno[i]]}');`, (err) => {
+                VALUES (?,?,?);`,[id, techno[i],req.body[techno[i]]], (err) => {
                         if (err) throw err;
                     });
 
@@ -143,7 +143,7 @@ const getUpdateParm = (req, res) => {
 const postUpdateParm = (req, res) => {
     let id = req.params.id;
     
-    db.query(`update Candidatemaster set FirstName = '${req.body.FirstName}',LastName = '${req.body.LastName}',Designation='${req.body.bd_Designation}',Adddress1='${req.body.Address1}',Address2='${req.body.Address2}',City='${req.body.City}',State='${req.body.State}',ZipCode='${req.body.ZipCode}',Email='${req.body.Email}',Phone='${req.body.Phone}',Gender='${req.body.Gender}',RelationshipStatus='${req.body.RelationStatus}',DateOfBirth='${req.body.DOB}' where CandidateId=${id}`, (err) => {
+    db.query(`update Candidatemaster set FirstName = ?,LastName = ?,Designation=?,Adddress1=?,Address2=?,City=?,State=?,ZipCode=?,Email=?,Phone=?,Gender=?,RelationshipStatus=?,DateOfBirth=? where CandidateId=?`,[req.body.FirstName,req.body.LastName,req.body.bd_Designation,req.body.Address1,req.body.Address2,req.body.City,req.body.State,req.body.ZipCode,req.body.Email,req.body.Phone,req.body.Gender,req.body.RelationStatus,req.body.DOB,id], (err) => {
         if (err) throw err;
     })
     /* update education table - Start*/
@@ -154,12 +154,13 @@ const postUpdateParm = (req, res) => {
     for (i = 0; i < board.length; i++) {
         if (board[i] != '') {
             if (hiddenId[i] == '') {
-                db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES ('${id}', '${board[i]}', '${year[i]}', '${percentage[i]}')`, (err) => {
+                db.query(`INSERT INTO EducationDetails (CandidateId,Bord, PassingYear, Percentage) VALUES (?,?,?)`,[id, board[i], year[i], percentage[i]], (err) => {
                     if (err) throw err;
                 });
             }
             else {
-                db.query(`UPDATE EducationDetails SET Bord='${board[i]}', PassingYear='${year[i]}', Percentage='${percentage[i]}' where CandidateId=${id} AND id =${hiddenId[i]}`, (err) => {
+                db.query(`UPDATE EducationDetails SET Bord=?, PassingYear=?, Percentage=? where CandidateId=? AND id =?`
+                ,[board[i],year[i],percentage[i],id,hiddenId[i]], (err) => {
                     if (err) throw err;
                 });
             }
@@ -176,15 +177,15 @@ const postUpdateParm = (req, res) => {
     for (i = 0; i < Companyname.length; i++) {
         if (Companyname[i] != '') {
             if (WorkhiddenId[i] == '') {
-                db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES ('${id}', '${Companyname[i]}', '${Designation[i]}', '${dateFrom[i]}', '${dateTo[i]}');`
+                db.query(`INSERT INTO exTask.WorkExprience (CandidateId, Companyname, Designation, StartDate, EndDate) VALUES (?,?,?,?,?);`,[id, Companyname[i], Designation[i], dateFrom[i], dateTo[i]]
                     , (err) => {
                         if (err) throw err;
                     });
             }
             else{
 
-                db.query(`update WorkExprience set Companyname='${Companyname[i]}', Designation='${Designation[i]}', StartDate='${dateFrom[i]}', EndDate='${dateTo[i]}' where CandidateId=${id} and WorkId=${WorkhiddenId[i]}`
-                , (err) => {
+                db.query(`update WorkExprience set Companyname=?, Designation=?, StartDate=?, EndDate=? where CandidateId=? and WorkId=?`
+                ,[Companyname[i],Designation[i],dateFrom[i],dateTo[i],id,WorkhiddenId[i]], (err) => {
                     if (err) throw err;
                 });
             }
@@ -199,7 +200,7 @@ const postUpdateParm = (req, res) => {
         for (i = 0; i < LanguageId.length; i++) {
             if(LanguageId[i] != ''){
                 if(lang[i] == ''){
-                    db.query(`DELETE FROM LanguageTable WHERE LanguageId=${LanguageId[i]}`,(err)=>{
+                    db.query(`DELETE FROM LanguageTable WHERE LanguageId=?`,[LanguageId[i]],(err)=>{
                         if(err) throw err;
                     });
                 }
@@ -219,13 +220,14 @@ const postUpdateParm = (req, res) => {
                 }
                 
                 if(LanguageId[i] != ''){
-                    db.query(`update LanguageTable set Languagename='${lang[i]}', LanguageRead='${read}', LanguageWrite='${write}', LanguageSpeak='${speak}' where LanguageId=${LanguageId[i]} `, (err) => {
+                    db.query(`update LanguageTable set Languagename=?, LanguageRead=?, LanguageWrite=?, LanguageSpeak=? where LanguageId=? `
+                    ,[lang[i],read,write,speak,LanguageId[i]], (err) => {
                         if (err) throw err;
                     });
                 }
                 else{
                     db.query(`INSERT INTO LanguageTable (CandidateId, Languagename, LanguageRead, LanguageWrite, LanguageSpeak)
-                    VALUES ('${id}', '${lang[i]}','${read}', '${write}', '${speak}');`, (err) => {
+                    VALUES (?,?,?,?,?);`,[id, lang[i],read, write, speak], (err) => {
                     if (err) throw err;
                 });
                 }
@@ -241,7 +243,7 @@ const postUpdateParm = (req, res) => {
         for (i = 0; i < TechnologieID.length; i++) {
             if(TechnologieID[i] != ''){
                 if(techno[i] == undefined){
-                    db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =${TechnologieID[i]}`,(err)=>{
+                    db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =?`,[TechnologieID[i]],(err)=>{
                         if(err) throw err;
                     });
                 }
@@ -252,13 +254,14 @@ const postUpdateParm = (req, res) => {
                     
                     if(TechnologieID[i] != ''){
                         
-                        db.query(`update TechnologiesTable set TechnoloieName='${techno[i]}', KnowlageLevel='${req.body[techno[i]]}' where TechnologieID =${TechnologieID[i]}`, (err) => {
+                        db.query(`update TechnologiesTable set TechnoloieName=?, KnowlageLevel=? where TechnologieID =?`
+                        ,[techno[i],req.body[techno[i]],TechnologieID[i]], (err) => {
                             if (err) throw err;
                         });
                     }
                     else if(techno[i] != undefined){
                         db.query(`INSERT INTO TechnologiesTable (CandidateId, TechnoloieName, KnowlageLevel)
-                        VALUES ('${id}', '${techno[i]}','${req.body[techno[i]]}');`, (err) => {
+                        VALUES (?,?,?);`,[id,techno[i],req.body[techno[i]]], (err) => {
                             if (err) throw err;
                         });
                     }
@@ -278,7 +281,7 @@ const postUpdateParm = (req, res) => {
         
         if(ReferanceId[i] != ''){
             if(refName[i] == ''){
-                db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =${TechnologieID[i]}`,(err)=>{
+                db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =?`,[TechnologieID[i]],(err)=>{
                     if(err) throw err;
                 });
             }
@@ -286,13 +289,13 @@ const postUpdateParm = (req, res) => {
         if (refName[i] != '') {
             if(ReferanceId[i] != ''){
 
-                db.query(`update ReferanceContact set Name='${refName[i]}', ContactNumber='${refPhone[i]}', Relation='${refRelation[i]}' where ReferanceId=${ReferanceId[i]}`
-                , (err) => {
+                db.query(`update ReferanceContact set Name=?, ContactNumber=?, Relation=? where ReferanceId=?`
+                ,[refName[i],refPhone[i],refRelation[i],ReferanceId[i]], (err) => {
                     if (err) throw err;
                 });
             }
             else if(refName[i] != undefined){
-                db.query(`INSERT INTO ReferanceContact (CandidateId, Name, ContactNumber, Relation) VALUES ('${id}', '${refName[i]}', '${refPhone[i]}', '${refRelation[i]}');`
+                db.query(`INSERT INTO ReferanceContact (CandidateId, Name, ContactNumber, Relation) VALUES (?,?,?,?);`,[id, refName[i], refPhone[i], refRelation[i]]
                 , (err) => {
                     if (err) throw err;
                 });
@@ -303,7 +306,8 @@ const postUpdateParm = (req, res) => {
     /* END */
     /* prefrace table */
     if(req.body.PreferNotice != ''){
-        db.query(`update Perferances set Location='${req.body.PreferLocation}', NoticePeriod='${req.body.PreferNotice}', ExpactedCTC='${req.body.PerferExCTC}', CurrentCTC='${req.body.PerferCuCTC}', Department='${req.body.Department}' where CandidateId=${id}`, (err) => {
+        db.query(`update Perferances set Location=?, NoticePeriod=?, ExpactedCTC=?, CurrentCTC=?, Department=? where CandidateId=?`
+        ,[req.body.PreferLocation,req.body.PreferNotice,req.body.PerferExCTC,req.body.PerferCuCTC,req.body.Department,id], (err) => {
             if (err) throw err;
         })
     }

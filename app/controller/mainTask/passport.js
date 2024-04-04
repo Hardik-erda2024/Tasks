@@ -19,7 +19,7 @@ jwtOptions.secretOrKey = process.env.JWT_SECRET;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
     
-    db.query(`select email from users where email='${jwt_payload.email}'`,(err,row)=>{
+    db.query(`select email from users where email=?`,[jwt_payload.email],(err,row)=>{
         if(err) throw err;
         if (row[0].email) {
             next(null, row[0].email);
