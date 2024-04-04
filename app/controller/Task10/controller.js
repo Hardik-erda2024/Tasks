@@ -1,7 +1,7 @@
 const db = require('../../../connection');
 
 const getTask10 = (req, res) => {
-    res.render('Pages/Task10');
+    res.render('Pages/Task10-CRUD');
 };
 
 const postTask10Id = (req, res) => {

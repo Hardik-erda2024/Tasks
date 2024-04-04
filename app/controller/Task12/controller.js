@@ -5,7 +5,7 @@ const getDisplayRedirect =(req, res) => {
 }
 
 const  getTask12Add =(req, res) => {
-    res.render('Pages/Task12');
+    res.render('Pages/Task12-CRUDwithAjax');
 }
 
 const postTask12 = (req, res) => {
@@ -138,7 +138,7 @@ const getDisplay =(req, res) => {
 }
 
 const getUpdateParm = (req, res) => {
-    res.render('Pages/Task12');
+    res.render('Pages/Task12-CRUDwithAjax');
 }
 
 const postUpdateParm = (req, res) => {

@@ -1,17 +1,17 @@
 const db = require('../../../connection');
 const getTask1 =(req,res)=>{
-    res.render('Pages/Task1');
+    res.render('Pages/Task1-dynemicTable');
 }
 
 const getTask2 =(req,res)=>{
-    res.render('Pages/Task2');
+    res.render('Pages/Task2-eventTable');
 }
 
 const getTask3 =(req,res)=>{
-    res.render('Pages/Task3');
+    res.render('Pages/Task3-KukuCube');
 }
 const getTask4 =(req,res)=>{
-    res.render('Pages/Task4');
+    res.render('Pages/Task4-TicTacToe');
 }
 const getTask5 =(req,res)=>{
     db.query('select * from StudentMaster order by StudentId  limit 0,10;',(err,row,fields)=>{
@@ -21,7 +21,7 @@ const getTask5 =(req,res)=>{
         {
             col.push(fields[i].name);
         }
-        res.render('Pages/Task5',{'row':row,'col':col});
+        res.render('Pages/Task5-Grid',{'row':row,'col':col});
     });
 }
 
@@ -45,7 +45,7 @@ const getTask6Id = (req,res)=>{
         {
             col.push(fields[i].name);
         }
-        res.render('Pages/Task6',{'id':id,'maxPage':maxPage,'row':row,'col':col});
+        res.render('Pages/Task6-Pagination',{'id':id,'maxPage':maxPage,'row':row,'col':col});
     });
     
 }
@@ -72,7 +72,7 @@ const getTask7Id =(req,res)=>{
     {
         col.push(fields[i].name);
     }
-    res.render('Pages/Task7',{'id':id,'maxPage':maxPage,'row':row,'col':col,'colName':colName});
+    res.render('Pages/Task7-Sorting',{'id':id,'maxPage':maxPage,'row':row,'col':col,'colName':colName});
     });
 }
 
@@ -96,7 +96,7 @@ const getTask8 = (req,res)=>{
         {
             col.push(fields[i].name);
         }
-        res.render('Pages/Task8',{'id':id,'maxPage':maxPage,'row':row,'col':col,'search':search});
+        res.render('Pages/Task8-Searching',{'id':id,'maxPage':maxPage,'row':row,'col':col,'search':search});
         });
     }
     else{
@@ -113,13 +113,13 @@ const getTask8 = (req,res)=>{
         {
             col.push(fields[i].name);
         }
-        res.render('Pages/Task8',{'id':id,'maxPage':maxPage,'row':row,'col':col,'search':search});
+        res.render('Pages/Task8-Searching',{'id':id,'maxPage':maxPage,'row':row,'col':col,'search':search});
         });
     }
 }
 
 const getTask9 = (req, res) => {
-    res.render('Pages/Task9');
+    res.render('Pages/Task9-SearchingWithDelimeter');
 };
 
 const postTask9 = (req, res) => {
@@ -218,7 +218,7 @@ const postTask9 = (req, res) => {
         for (i in fields) {
             col.push(fields[i].name);
         }
-        res.render('Pages/Task9', { 'row': row, 'col': col });
+        res.render('Pages/Task9-SearchingWithDelimeter', { 'row': row, 'col': col });
     });
 
 }

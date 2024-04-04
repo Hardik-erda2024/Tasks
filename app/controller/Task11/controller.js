@@ -16,7 +16,7 @@ const getResultParm = (req,res)=>{
         {
             col.push(fields[i].name);
         }
-        res.render('Pages/Task11',{'row':row,'col':col,'maxPage':maxPage,'id':page,'colName':colName});
+        res.render('Pages/Task11-ResultTable',{'row':row,'col':col,'maxPage':maxPage,'id':page,'colName':colName});
     });
     
 }
