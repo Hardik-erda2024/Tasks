@@ -12,8 +12,7 @@ const getResultParm = (req,res)=>{
     LIMIT ${currentPage},${numRow}`,(err,row,fields)=>{
         if(err) throw err;
         var col = [];
-        for(i in fields)
-        {
+        for(i in fields){
             col.push(fields[i].name);
         }
         res.render('Pages/Task11-ResultTable',{'row':row,'col':col,'maxPage':maxPage,'id':page,'colName':colName});

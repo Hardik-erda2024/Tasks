@@ -23,12 +23,11 @@ const getAccountActivationCode = (req, res) => {
         
         var cur = new Date().toTimeString();
         var tim = new Date(new Date(row[0].createAt).getTime() + 5 * 60000).toTimeString();
-        if (cur < tim) {
+        if (cur < tim){
             
             res.render('Pages/createPSW');
         }
-        else
-        {
+        else{
             res.end('link is exp.');
         }
     });

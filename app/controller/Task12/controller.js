@@ -19,7 +19,6 @@ const postTask12 = (req, res) => {
                 (err, result) => {
                     if (err) return reject(err);
                     return resolve(result.insertId);
-
                 });
         });
     }
@@ -274,9 +273,9 @@ const postUpdateParm = (req, res) => {
         var refPhone = req.body.refPhone.split(',');
         var refRelation = req.body.refRelation.split(',');
         var ReferanceId = req.body.ReferanceId.split(',');
-        console.log(ReferanceId,refName);
+        
     for (i = 0; i < ReferanceId.length; i++) {
-        console.log(i);
+        
         if(ReferanceId[i] != ''){
             if(refName[i] == ''){
                 db.query(`DELETE FROM TechnologiesTable WHERE TechnologieID =${TechnologieID[i]}`,(err)=>{
@@ -304,7 +303,6 @@ const postUpdateParm = (req, res) => {
     /* END */
     /* prefrace table */
     if(req.body.PreferNotice != ''){
-
         db.query(`update Perferances set Location='${req.body.PreferLocation}', NoticePeriod='${req.body.PreferNotice}', ExpactedCTC='${req.body.PerferExCTC}', CurrentCTC='${req.body.PerferCuCTC}', Department='${req.body.Department}' where CandidateId=${id}`, (err) => {
             if (err) throw err;
         })
