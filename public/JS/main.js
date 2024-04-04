@@ -12,7 +12,7 @@ const path = window.location.pathname.split("/");
     async function fetchDB(){ 
         let response = await fetch(`http://localhost:8080/db-Candidatemaster/${Id}`);
         let data = await response.json();
-        var key=Object.keys(data[0]);
+        let key=Object.keys(data[0]);
         key.forEach((item)=>{
             if(item == 'Gender'){
                 let rb = document.getElementsByName(item);

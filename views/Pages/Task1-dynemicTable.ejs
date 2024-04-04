@@ -28,9 +28,9 @@
         
         function addRowFun()
         {
-            var Rlen = document.getElementsByClassName("Drow").length;
+            let Rlen = document.getElementsByClassName("Drow").length;
             console.log(Rlen)
-            var Dlen = document.getElementsByClassName("Dcol").length;
+            let Dlen = document.getElementsByClassName("Dcol").length;
             console.log(Dlen)
             const trow = document.createElement("tr");
             trow.setAttribute("class","Drow");
@@ -54,7 +54,7 @@
         }
         function addColFun()
         {
-            var Rlen = document.getElementsByClassName("Drow").length;
+            let Rlen = document.getElementsByClassName("Drow").length;
             for(i=0;i<Rlen;i++)
             {
                 const tcol = document.createElement("td");
@@ -68,7 +68,7 @@
             console.log();
             if(document.getElementsByClassName("Drow")[0].children.length>2)
             {
-                var Rlen = document.getElementsByClassName("Drow").length;
+                let Rlen = document.getElementsByClassName("Drow").length;
                 for(i=0;i<Rlen;i++)
                 {
                     document.getElementsByClassName("Drow")[i].lastChild.remove();
@@ -78,12 +78,12 @@
         }
         function colorfun()
         {
-            var num = document.getElementsByClassName("Drow").length;
+            let num = document.getElementsByClassName("Drow").length;
             for (i=0;i<num;i++)
             {
                 if(i%2 == 0)
                 {
-                    var len = document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol").length;
+                    let len = document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol").length;
                     for(j=0;j<len;j++)
                     {
                         if(j%2==0)
@@ -95,7 +95,7 @@
                 }
                 else
                 {
-                    var len = document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol").length;
+                    let len = document.getElementsByClassName("Drow")[i].getElementsByClassName("Dcol").length;
                     for(j=0;j<len;j++)
                     {
                         if(j%2!=0)

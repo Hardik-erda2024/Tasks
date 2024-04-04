@@ -4,7 +4,7 @@ const path = window.location.pathname.split("/");
     async function fetchDB(){ 
         let response = await fetch(`http://localhost:${window.location.port}/db-Candidatemaster/${Id}`);
         let data = await response.json();
-        var key=Object.keys(data[0]);
+        let key=Object.keys(data[0]);
         key.forEach((item)=>{
             if(item == 'Gender'){
                 let rb = document.getElementsByName(item);
@@ -97,8 +97,10 @@ if(update == 'update'){
     document.getElementById('subBtn').setAttribute('onclick','upFun()');
     fetchDB();
 }
-var dislayCount = 0;
+let dislayCount = 0;
 async function upFun(){
+    let flag =formValidationFun()
+    if(flag != false){
     const obj = {};
         new FormData(document.querySelector('form')).forEach((value,key)=>{
             if(obj[key] != undefined){
@@ -117,6 +119,7 @@ async function upFun(){
             })
         let data = await response.text();
         window.location = `http://localhost:${window.location.port}/Task12/display`;
+    }
 }
 function nxtdiv() {
     let flag =formValidationFun()
@@ -178,6 +181,8 @@ function prvdiv() {
     }
 }
 async function subFun(){
+    let flag =formValidationFun()
+    if(flag != false){
         const obj = {};
         new FormData(document.querySelector('form')).forEach((value,key)=>{
             if(obj[key] != undefined){
@@ -198,3 +203,4 @@ async function subFun(){
             alert(data);
             window.location = `http://localhost:${window.location.port}/Task12/display`;
     }
+}

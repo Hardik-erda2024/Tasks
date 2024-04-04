@@ -33,12 +33,12 @@
     </table>
     <div id="Mydiv"></div>
     <script>
-        var Rnum, width = 150,gbColor,score=0;
+        let Rnum, width = 150,gbColor,score=0;
         function colorAllCol()
         {
             gbColor = getRandomColor();
             console.log(gbColor);
-            var temp = document.querySelectorAll(".Dcol");
+            let temp = document.querySelectorAll(".Dcol");
             temp.forEach(function (element) {
                 element.setAttribute("style", "background-color: " + gbColor);
                 element.setAttribute("onclick","alert('Wrong Box')");
@@ -46,7 +46,7 @@
         }
         function randColorFun() {
             colorAllCol()
-            var maxLimit = document.getElementsByClassName("Dcol").length;
+            let maxLimit = document.getElementsByClassName("Dcol").length;
             Rnum = Math.floor(Math.random() * maxLimit);
             console.log(Rnum, maxLimit);
             document.getElementsByClassName("Dcol")[Rnum].setAttribute("style", "background-color: "+gbColor+"D9");
@@ -55,9 +55,9 @@
         }
         randColorFun();
         function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
             }
             return color;
@@ -67,9 +67,9 @@
             document.getElementsByClassName("Dcol")[Rnum].removeAttribute("onclick");
             score+=1;
             document.getElementById("lb_score").innerHTML="Score: "+score;
-            var Rlen = document.getElementsByClassName("Drow").length;
+            let Rlen = document.getElementsByClassName("Drow").length;
             console.log(Rlen)
-            var Dlen = document.getElementsByClassName("Dcol").length;
+            let Dlen = document.getElementsByClassName("Dcol").length;
             console.log(Dlen)
             const trow = document.createElement("tr");
             trow.setAttribute("class", "Drow");
@@ -88,8 +88,8 @@
             colorAllCol()
             randColorFun()
         }
-        var timeVar=setInterval(TimerFun,1000)
-        var count=100
+        let timelet=setInterval(TimerFun,1000)
+        let count=100
         function TimerFun()
         {
             document.getElementById("lb_timer").innerHTML="Timer: "+count;
@@ -97,10 +97,10 @@
             if(count == -1)
             {
                 document.getElementById("Dtable").remove()
-                var newH2=document.createElement("h2");
+                let newH2=document.createElement("h2");
                 newH2.innerHTML="Reload Page to play agin";
                 document.getElementById("Mydiv").appendChild(newH2);
-                clearInterval(timeVar)
+                clearInterval(timelet)
             }
         }
     </script>

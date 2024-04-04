@@ -16,7 +16,7 @@ const getTask4 =(req,res)=>{
 const getTask5 =(req,res)=>{
     db.query('select * from StudentMaster order by StudentId  limit 0,10;',(err,row,fields)=>{
         if(err) throw err;
-        var col = []
+        let col = []
         for(i in fields)
         {
             col.push(fields[i].name);
@@ -30,17 +30,17 @@ const getTask6 =(req,res)=>{
 }
 
 const getTask6Id = (req,res)=>{
-    var id = req.params.id;
-    var numRow = 4;
-    var maxPage;
-    var currentPage = (id-1) * numRow;
+    let id = req.params.id;
+    let numRow = 4;
+    let maxPage;
+    let currentPage = (id-1) * numRow;
     db.query('select count(StudentId)as sid from StudentMaster',(err,count)=>{
         if(err) throw err;
         maxPage = count[0].sid / numRow;
     });
     db.query('select * from StudentMaster LIMIT ?,?;',[currentPage,numRow],(err,row,fields)=>{
         if(err) throw err;
-        var col = [];
+        let col = [];
         for(i in fields)
         {
             col.push(fields[i].name);
@@ -55,11 +55,11 @@ const getTask7 = (req,res)=>{
 };
 
 const getTask7Id =(req,res)=>{ 
-    var colName = req.params.col;
-    var id = req.params.id;
-    var numRow = 4;
-    var maxPage = 2;
-    var currentPage = (id-1) * numRow;
+    let colName = req.params.col;
+    let id = req.params.id;
+    let numRow = 4;
+    let maxPage = 2;
+    let currentPage = (id-1) * numRow;
     
     db.query('select count(StudentId)as sid from StudentMaster',(err,count)=>{
         if(err) throw err;
@@ -67,7 +67,7 @@ const getTask7Id =(req,res)=>{
     });
     db.query('select * from StudentMaster order by ? LIMIT ?,?;',[colName,currentPage,numRow],(err,row,fields)=>{
         if(err) throw err;
-        var col = [];
+        let col = [];
     for(i in fields){
         col.push(fields[i].name);
     }
@@ -76,18 +76,18 @@ const getTask7Id =(req,res)=>{
 }
 
 const getTask8 = (req,res)=>{
-    var id = req.params.id;
-    var search = req.params.search.split(',');
-    var numRow = 4;
-    var maxPage = 2;
-    var currentPage = (id-1) * numRow;
+    let id = req.params.id;
+    let search = req.params.search.split(',');
+    let numRow = 4;
+    let maxPage = 2;
+    let currentPage = (id-1) * numRow;
     
     if(search[0] == "s_id"){
         maxPage = 1
          
         db.query(`select * from StudentMaster where StudentId = ? LIMIT ?,?`,[search[1],currentPage,numRow],(err,row,fields)=>{
             if(err) throw err;
-            var col = [];
+            let col = [];
         for(i in fields){
             col.push(fields[i].name);
         }
@@ -103,7 +103,7 @@ const getTask8 = (req,res)=>{
         db.query(`select * from StudentMaster where case when (? = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '?%') end ? case when (? = '') then (LastName like '') else (LastName like '?%') end ? case when (? = '') then (City like '') else (City like '?%') end LIMIT ?,?`
         ,[search[0],search[0],search[1],search[2],search[2],search[1],search[3],search[3],currentPage,numRow],(err,row,fields)=>{
             if(err) throw err;
-            var col = [];
+            let col = [];
         for(i in fields){
             col.push(fields[i].name);
         }
@@ -117,11 +117,11 @@ const getTask9 = (req, res) => {
 };
 
 const postTask9 = (req, res) => {
-    var str = req.body.str;
-    var deli = ['_', '^', '$', '}', '{', ':'];
-    var min = [];
-    var val = [];
-    var q = '';
+    let str = req.body.str;
+    let deli = ['_', '^', '$', '}', '{', ':'];
+    let min = [];
+    let val = [];
+    let q = '';
     for (i = 0; i < str.length; i++) {
         for (j in deli) {
 
@@ -135,8 +135,8 @@ const postTask9 = (req, res) => {
         val.push(str.slice(min[i], min[i + 1]) + '\n');
     }
     val.sort()
-    var q = 'select * from StudentMaster where ';
-    var flag = false;
+    q = 'select * from StudentMaster where ';
+    let flag = false;
     for (i = 0; i < val.length - 1; i++) {
         if (val[i][0] == val[i + 1][0]) {
             q += '(';

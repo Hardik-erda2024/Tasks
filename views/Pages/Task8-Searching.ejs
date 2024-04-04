@@ -67,15 +67,15 @@
     <script>
         function searchByIdFun()
         {
-            var sid = document.getElementById('sid').value;
+            let sid = document.getElementById('sid').value;
             location.href = `/Task8/1/s_id,${sid}`;
         }
         function searchBymoreFun()
         {
-            var fname = document.getElementById('fname').value;
-            var lname = document.getElementById('lname').value;
-            var op = document.getElementById('op').value;
-            var city = document.getElementById('city').value;
+            let fname = document.getElementById('fname').value;
+            let lname = document.getElementById('lname').value;
+            let op = document.getElementById('op').value;
+            let city = document.getElementById('city').value;
             location.href = `/Task8/1/${fname},${op},${lname},${city}`;
         }
         function moreFun()
@@ -101,16 +101,16 @@
             
         }
        
-        var btn = document.getElementById('btn_id');
-        var tb = document.getElementById('sid');
+        let btn = document.getElementById('btn_id');
+        let tb = document.getElementById('sid');
         tb.addEventListener("keyup",()=>{
             if(event.key == "Enter"){
             btn.click();
             }
         })
             
-        var btn_more = document.getElementById('btn_more');
-        var tb_more = document.getElementById('city');
+        let btn_more = document.getElementById('btn_more');
+        let tb_more = document.getElementById('city');
         tb_more.addEventListener("keyup",()=>{
             if(event.key == "Enter"){
             btn_more.click();

@@ -41,8 +41,8 @@
         </tr>
     </table>
     <script>
-        var p1count=0,p2count=0;
-        var player = 1;
+        let p1count=0,p2count=0;
+        let player = 1;
         function checkSignFun1()
         {
             if(document.getElementById("col1").childElementCount ==2)
@@ -370,12 +370,12 @@
         }
         function clearCol()
         {
-            var img = document.querySelectorAll("img");
+            let img = document.querySelectorAll("img");
             img.forEach(function (e){
                 e.remove();
             })
 
-            var lb = document.querySelectorAll("label");
+            let lb = document.querySelectorAll("label");
             lb.forEach(function(e){
                 e.innerHTML=3;
             })
@@ -394,8 +394,8 @@
 
         function checkDrawfun()
         {
-            var count=0;
-            var data = document.querySelectorAll("label");
+            let count=0;
+            let data = document.querySelectorAll("label");
             data.forEach(function (e){
                 if(e.innerHTML != "3")
                 {

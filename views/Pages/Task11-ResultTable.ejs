@@ -66,7 +66,7 @@
         document.getElementById('orderby').querySelector("option[value='"+location.href.split('/')[4]+"']").selected = true;
         function getorderFun()
         {
-            var orderby = document.getElementById("orderby").value;
+            let orderby = document.getElementById("orderby").value;
             location.href = "http://localhost:8080/result/"+orderby+"/1";
         }
     </script>

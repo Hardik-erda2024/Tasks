@@ -15,15 +15,15 @@
     <script>
         async function fetchTab()
         {
-            var response = await fetch(`http://localhost:8080/db-Candidatemaster`);
-            var data = await response.json();
-            var th = document.createElement('tr');
+            let response = await fetch(`http://localhost:8080/db-Candidatemaster`);
+            let data = await response.json();
+            let th = document.createElement('tr');
                 Object.keys(data[0]).forEach((el)=>{
                     th.innerHTML +=`<th>${el}</th>`; 
                 });
                 document.getElementById('mytab').append(th);
             Object.keys(data).forEach((i)=>{
-                var tr = document.createElement('tr');
+                let tr = document.createElement('tr');
                 Object.values(data[i]).forEach((e)=>{
                     tr.innerHTML +=`<td>${e}</td>`;
                 });

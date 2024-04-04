@@ -1,6 +1,6 @@
 const db = require('../../../connection');
 const saltedMd5 = require('salted-md5');
-var jwt = require('jsonwebtoken');
+let jwt = require('jsonwebtoken');
 
 
 const getRegister = (req, res) => {
@@ -17,12 +17,12 @@ const postRegister = (req, res) => {
 }
 
 const getAccountActivationCode = (req, res) => {
-    var code = req.params.code;
+    let code = req.params.code;
     db.query(`select createAt from users where activationCode = ?`,[code],(err,row)=>{
         if(err) throw err;
         
-        var cur = new Date().toTimeString();
-        var tim = new Date(new Date(row[0].createAt).getTime() + 5 * 60000).toTimeString();
+        let cur = new Date().toTimeString();
+        let tim = new Date(new Date(row[0].createAt).getTime() + 5 * 60000).toTimeString();
         if (cur < tim){
             
             res.render('Pages/createPSW');
@@ -34,7 +34,7 @@ const getAccountActivationCode = (req, res) => {
 }
 
 const postAccountActivationCode = (req, res) => {
-    var code = req.params.code;
+    let code = req.params.code;
     db.query(`select salt from users where activationCode=?`,[code], (err, row) => {
         if (err) throw err;
 
@@ -50,7 +50,7 @@ const getLogin = (req, res) => {
 }
 
 const postlogin =(req, res) => {
-    var flag = false;
+    let flag = false;
     db.query(`select salt from users`, (err, row) => {
         if (err) throw err;
         Object.keys(row).forEach((item) => {
@@ -60,8 +60,8 @@ const postlogin =(req, res) => {
                 
                 if (data[0].count == 1) {
                     flag = true;
-                    var payload = {email: req.body.email};
-                    var token = jwt.sign(payload, process.env.JWT_SECRET);
+                    let payload = {email: req.body.email};
+                    let token = jwt.sign(payload, process.env.JWT_SECRET);
                     res.cookie('jwt',token);
                     res.redirect('/taskList');
                 }
