@@ -38,7 +38,7 @@ const getTask6Id = (req,res)=>{
         if(err) throw err;
         maxPage = count[0].sid / numRow;
     });
-    db.query('select * from StudentMaster LIMIT '+currentPage+','+numRow+';',(err,row,fields)=>{
+    db.query('select * from StudentMaster LIMIT ?,?;',[currentPage,numRow],(err,row,fields)=>{
         if(err) throw err;
         var col = [];
         for(i in fields)
@@ -65,7 +65,7 @@ const getTask7Id =(req,res)=>{
         if(err) throw err;
         maxPage = count[0].sid / numRow;
     });
-    db.query('select * from StudentMaster order by '+colName+' LIMIT '+currentPage+','+numRow+';',(err,row,fields)=>{
+    db.query('select * from StudentMaster order by ? LIMIT ?,?;',[colName,currentPage,numRow],(err,row,fields)=>{
         if(err) throw err;
         var col = [];
     for(i in fields){
@@ -85,7 +85,7 @@ const getTask8 = (req,res)=>{
     if(search[0] == "s_id"){
         maxPage = 1
          
-        db.query(`select * from StudentMaster where StudentId = '${search[1]}' LIMIT ${currentPage},${numRow}`,(err,row,fields)=>{
+        db.query(`select * from StudentMaster where StudentId = ? LIMIT ?,?`,[search[1],currentPage,numRow],(err,row,fields)=>{
             if(err) throw err;
             var col = [];
         for(i in fields){
@@ -95,11 +95,13 @@ const getTask8 = (req,res)=>{
         });
     }
     else{
-        db.query(`select count(StudentId)as sid from StudentMaster where case when ('${search[0]}' = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '${search[0]}%') end ${search[1]} case when ('${search[2]}' = '') then (LastName like '') else (LastName like '${search[2]}%') end ${search[1]} case when ('${search[3]}' = '') then (City like '') else (City like '${search[3]}%') end`,(err,count)=>{
+        db.query(`select count(StudentId)as sid from StudentMaster where case when (? = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '?%') end ? case when (? = '') then (LastName like '') else (LastName like '?%') end ? case when (? = '') then (City like '') else (City like '?%') end`
+        ,[search[0],search[0],search[1],search[2],search[2],search[1],search[3],search[3]],(err,count)=>{
             if(err) throw err;
             maxPage = Math.ceil( count[0].sid / numRow);
         });
-        db.query(`select * from StudentMaster where case when ('${search[0]}' = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '${search[0]}%') end ${search[1]} case when ('${search[2]}' = '') then (LastName like '') else (LastName like '${search[2]}%') end ${search[1]} case when ('${search[3]}' = '') then (City like '') else (City like '${search[3]}%') end LIMIT ${currentPage},${numRow}`,(err,row,fields)=>{
+        db.query(`select * from StudentMaster where case when (? = '') then (StudentMaster.FirstName like '') else (StudentMaster.FirstName like '?%') end ? case when (? = '') then (LastName like '') else (LastName like '?%') end ? case when (? = '') then (City like '') else (City like '?%') end LIMIT ?,?`
+        ,[search[0],search[0],search[1],search[2],search[2],search[1],search[3],search[3],currentPage,numRow],(err,row,fields)=>{
             if(err) throw err;
             var col = [];
         for(i in fields){

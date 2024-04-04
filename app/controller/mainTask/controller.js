@@ -7,9 +7,9 @@ const getRegister = (req, res) => {
     res.render('Pages/index');
 }
 const postRegister = (req, res) => {
-    db.query(`INSERT INTO users (activationCode, firstName, lastName, email, salt, gender) VALUES (SUBSTRING(MD5(RAND()) FROM 1 FOR 6), '${req.body.firstname}', '${req.body.lastname}', '${req.body.email}', SUBSTRING(MD5(RAND()) FROM 1 FOR 6), '${req.body.Gender}');`, (err, row) => {
+    db.query(`INSERT INTO users (activationCode, firstName, lastName, email, salt, gender) VALUES (SUBSTRING(MD5(RAND()) FROM 1 FOR 6), ?,?,?, SUBSTRING(MD5(RAND()) FROM 1 FOR 6), ?);`,[req.body.firstname, req.body.lastname, req.body.email,req.body.Gender], (err, row) => {
         if (err) throw err;
-        db.query(`select activationCode from users where userId=${row.insertId}`, (err, data) => {
+        db.query(`select activationCode from users where userId=?`,[row.insertId], (err, data) => {
             if (err) throw err;
             res.render('Pages/AccountActivation', { 'code': data[0].activationCode });
         })
@@ -18,7 +18,7 @@ const postRegister = (req, res) => {
 
 const getAccountActivationCode = (req, res) => {
     var code = req.params.code;
-    db.query(`select createAt from users where activationCode = '${code}'`,(err,row)=>{
+    db.query(`select createAt from users where activationCode = ?`,[code],(err,row)=>{
         if(err) throw err;
         
         var cur = new Date().toTimeString();
@@ -35,10 +35,10 @@ const getAccountActivationCode = (req, res) => {
 
 const postAccountActivationCode = (req, res) => {
     var code = req.params.code;
-    db.query(`select salt from users where activationCode='${code}'`, (err, row) => {
+    db.query(`select salt from users where activationCode=?`,[code], (err, row) => {
         if (err) throw err;
 
-        db.query(`update users set password = '${saltedMd5(req.body.password, row[0].salt)}',userStatus="Active" where activationCode='${code}';`, (err) => {
+        db.query(`update users set password = ?,userStatus="Active" where activationCode=?;`,[saltedMd5(req.body.password, row[0].salt),code], (err) => {
             if (err) throw err;
             res.end('Account is activated go to login');
         })
@@ -55,7 +55,7 @@ const postlogin =(req, res) => {
         if (err) throw err;
         Object.keys(row).forEach((item) => {
 
-            db.query(`select count(*) as count from users where email='${req.body.email}' and password='${saltedMd5(req.body.password, row[item].salt)}' `, (err, data) => {
+            db.query(`select count(*) as count from users where email=? and password=? `,[req.body.email,saltedMd5(req.body.password, row[item].salt)], (err, data) => {
                 if (err) throw err;
                 
                 if (data[0].count == 1) {
